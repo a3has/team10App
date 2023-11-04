@@ -5,7 +5,7 @@
 - Write at least 1 meeting per week until the end of the semester
 
 ## Meetings
-### 2023-10-01 at 10:30
+### 11/2/2023 @ 8:00 Pm
 - Who attended the meeting
 - Team updates (15min or less)
 <Each team member gives an update of what they did from the last meeting and what
