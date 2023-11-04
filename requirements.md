@@ -179,52 +179,36 @@ Sketch for Requirement 5 [here](images/Edit_Note.png)
   - If note was deleted, user is back in home page, and can create/click on other notes.
   - If not deleted, user can choose to edit or delete the note again.
 
-### Requirement 1 - Visualize note connections
-**Author: Nikko**
+Sketch for Requirement 6 [here](images/Delete_Note.png )
 
-- **Pre-condition**
-  1. Users must have an existing account
-- **Trigger**
-  1. User logs in
-- **Primary Sequence**
-  1. User logs in with a verified account
-  2. The system sends the user to the home page and displays the highest-level folder(s) within the system
-  3. The user clicks an arrow on the side of the folder
-  4. System displays a tree with all folders and all notes within the folder
-- **Primary Postconditions**
-  - Users can view the note and open subsequent folders when selected from the tree
-  - Users can manipulate the notes and its subfolders by moving them around changing text, or deleting
-- **Alternative Sequence**
-  1. User fails to log in with a verified account
-  Prompt the user to try again 
-- **Alternative Sequence**
-  1. The user does not have any existing notes or folders in the system
-  The system prompts users that they do not have any notes and to create one now.
-
-### Requirement 6 - Create Note
-**Author: Nikko**
+### Requirement 7 - Create Note Folder (grouping)
+Author: Jonathan
 
 - **Pre-condition:**
-  1) The user must have an existing account
-  2) The user must be logged in
-- **Trigger:**
-  1) The user selects to create a new note
-- **Primary Sequence**
-  1. The user navigates to the folder they would like to put the note in
-  2. User clicks create a new note
-  3. The system prompts the user to write the name of the note in a text box
-  4. The user types the name of the note.
-  5. User clicks create
-  6. The system saves the information creates a note in the folder, and displays the note to the user.
-- **Primary Postconditions:**
-  - Users can manipulate the contents of the note such as adding or removing text or displaying - images
-  - Users can delete the note
-  - Users can move the note
-- **Alternative Sequence**
-  1. The user fails to write a title for the note
-  2. The system displays an error stating no title was given to the note and to give one before selecting create
+  - User logged in.
+  - User has atleast one note created.
 
-### Requirement 12 - Support text formatting (Adding bold, italic, and underlining)
+- **Trigger:**
+  - User clicks on create category button.
+
+- **Primary Sequence:**
+  1. Text box appears to enter folder name.
+  2. List of existing notes is shown.
+  3. User can select one or more notes to add to folder.
+  3. User clicks apply to confirm selections.
+
+- **Alternate Sequence:**
+  1. Folder name already exists. 
+  2. Enter a new name for folder. 
+
+- **Primary Postconditions:**
+  1. Folder created
+  2. Chosen notes are moved into new file/container. 
+
+Sketch for folder creation here
+[folder](images/folder.png)
+
+### Requirement 8 - Support text formatting (Adding bold, italic, and underlining)
 **Author Nikko**
 
 - **Pre-condition:**
@@ -237,7 +221,7 @@ Sketch for Requirement 5 [here](images/Edit_Note.png)
   2. The user selects the note that they want to edit.
   3. The system opens the note and displays the contents to the user.
   4. The user clicks on a textbox within the note
-  5. The system allows the user to type in the note and shows options to bold, italicize, or underline the text the user is inputting or reading.
+  5. The system allows the user to type in the note and shows options to bold, italicize, or underline the text the user is inputting.
 
 - **Primary Post-conditions:**
   - Users can select one of the options and it will change the upcoming text or highlighted text to be bolded, italicized, or underlined
@@ -245,3 +229,147 @@ Sketch for Requirement 5 [here](images/Edit_Note.png)
 
 - **Alternative sequence:**
   - N/a
+
+### Requirement 9 - Advance search items with regular expressions or filters by categories
+**Author: Sammy**
+[To Do Lists](/images/Advanced%20Search.png)
+- **Pre-condition:** 
+  - User must be logged in
+  - System should have a database with searchable items
+- **Trigger:** 
+  - Click on search
+  - Click on advance search
+- **Primary Sequence:**
+  1. User access the search functionality
+  2. User sees advance seach button
+  3. Can type in expression to seacrh for
+  4. Can use filters from dropdown list
+  5. System will search the data bases for the information 
+  6. System displays the results of the search 
+  7. User can chaneg their search expression
+- **Primary Postconditions:** 
+  1) User gets a list of the search expression or the filtered content 
+- **Alternate Sequence:** 
+  1. Invalid Search
+  2. Retype another expression
+- **Alternate Sequence <optional>:**
+  1. Expression not found
+  2. Retype new expression
+
+### Requirement 10 - Change note background color
+**Author: Abdulkader**
+
+- **Pre-condition:**
+  - User is logged in.
+  - User is in edit note mode.
+
+- **Trigger:**
+  - User clicks the eye-drop icon in the edit note windows.
+
+- **Primary Sequence:**
+  1. A color pallete is shown. 
+  2. User selects preferred color from selection.
+  3. A preview of the note with new color is shown.
+  4. User clicks apply to finalize selection.
+
+- **Primary Postconditions:**
+  1. Note with new color is updateda and saved.
+
+- **Alternate Sequence:**
+  1. A eye-drop icon is clicked on an already colored note. 
+  2. A default color button is shown to return note back to white. 
+
+Sketch for color here
+[eyedrop](images/eyedrop.png)
+
+### Requirement 11 - Visualize note connections
+**Author: Nikko**
+
+- **Pre-condition**
+  1. Users must have an existing account
+- **Trigger**
+  1. User logs in
+- **Primary Sequence**
+  1. User logs in with a verified account
+  2. The system sends the user to the home page and displays the highest-level folder(s) within the system
+  3. The user selects right clicks folder and selects the visualize option
+  4. System displays a tree with all folders and all notes within them
+- **Primary Postconditions**
+  - Users can view the note and open subsequent folders when selected from the tree
+  - Users can manipulate the note and its subfolders by moving them around changing text, or deleting
+- **Alternative Sequence**
+  1. User fails to log in with a verified account
+  Prompt the user to try again 
+- **Alternative Sequence**
+  1. The user does not have any existing notes or folders in the system
+  The system prompts users that they do not have any notes and to create one now.
+
+### Requirement 12 - Connect with Google Calendar API
+**Author: Abdulkader**
+
+- **Pre-condition:**
+  - External Google API documentation and access credentials are available. 
+  - User must be logged in to interact with calendar.
+
+- **Trigger:**
+  - No specific trigger besides login; calendar always visible to user. 
+
+- **Primary Sequence:**
+  1. User lands on app home page, or subsequent menus.
+  2. Calendar box loads in top right corner of screen.
+  3. User interacts with calendar, days, months, years. 
+
+- **Primary Postconditions:**
+  1. User returns to notes activities after viewing calendar info. 
+
+- **Alternate Sequence:**
+  1. User logs in using Google to import personal details and events from own calendar.
+
+Sketch for calendar here
+[gCal](images/gCal.png)
+
+
+### Requirement 13 - Attaching image to notes
+**Author: Abdulkader**
+
+- **Pre-condition:**
+  - User logged in.
+  - User on edit note mode.
+
+- **Trigger:**
+- User clicks on add image icon.
+
+- **Primary Sequence:**
+  1. File browser opens up.
+  2. User chooses image file from local windows or mac system to upload to note.
+  3. User clicks the upload button. 
+
+- **Alternate Sequence:**
+  - Chosen file extension is not supported. 
+  - Prompts the user to select a proper image file (.jpg, .jpeg, .png).
+
+- **Postconditions:**
+  - Image is inserted into note and saved in database.
+
+Sketch for image insert [here](images/imgIns.png)
+
+### 14 - Notes can be checked off on todo list
+**Author: Sammy**
+[To Do Lists](/images/To%20Do%20List.png)
+- **Pre-condition:** 
+  - User must be logged in
+- **Trigger:** 
+  - User clicks Todo button
+- **Primary Sequence:**
+  1. User logs in
+  2. User clicks on todo button
+  3. Creates an option to create a new task
+  4. Able to apply a checkmark when done
+  5. Able to delete a todo 
+  6. User can edit the name 
+  7. System can set remiders 
+- **Primary Postconditions:** 
+  - Check list is updated with newly created task 
+  - User can choose to edit, delete, or mark as done
+- **Alternate Sequence:** 
+  1. User can choose to do the task at antoher time
