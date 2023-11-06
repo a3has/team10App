@@ -377,7 +377,7 @@ Sketch for image insert here
   2. Application responds to click action by expanding the clicked note item.
   3. The full content of the note is displayed to the user, along with 'edit' button on top right of note.
   4. User clicks on the 'edit' button .
-  5. Note view updates to change view mode to edit mode, allowing user to modify the contents of the note.
+  5. Note view updates to change view mode to edit mode, allowing user to modify the contents and header/name of the note.
   6. User clicks 'save' button after completing edits of the selected note.
   7. Application changes note back to view mode, displaying the updated content.
 - **Alternate Sequence - User cancels edits made to note**
@@ -389,3 +389,27 @@ Sketch for image insert here
 - **Postconditions**
   - The user has successfully changed the contents of the note, or no changes were made at all.
   - The user can choose to take further actions, such as editing again or deleting the note.
+
+### Requirement 9 - Delete Note
+**Author: Jonathan**
+- **Preconditions**
+  - User has created an account and is logged in
+  - User has at least one note created, and note is displayed in notes list
+- **Trigger**
+  - User clicks on note from list of notes
+- **Primary Sequence**
+  1. User clicks on the name of the note they want to delete.
+  2. Application responds to click action by expanding the clicked note item.
+  3. The full content of the note is displayed to the user, along with 'delete' button on top right of note.
+  4. User clicks on the 'delete' button .
+  5. User is prompted by application to check if user wants note to be deleted.
+  6. User clicks "yes" on the prompt.
+  7. The note is deleted, and the view switches back to the home page, where the list of notes is in view.
+- **Alternate Sequence - User clicks 'No' to delete prompt**
+  1. The user decides that they no longer want the note to be deleted.
+  2. User clicks the 'No' button when prompted to say yes or no to deletion of note.
+  3. The prompt disappears and the user is back to the view of the note's content.
+- **Postconditions**
+  - The user has successfully deleted the note (or no changes occurred)
+  - If note was deleted, user is back in home page, and can create/click on other notes.
+  - If not deleted, user can choose to edit or delete the note again.
