@@ -1,5 +1,5 @@
-# Project Name
+# Sticky Keys
 - Sammy Cuaderno (@Scuaderno1991)
 - Abdulkader Hasbini (@a3has)
-- Jonathan Nguyen (@jonathanguven)
-- Name (@username)
+- Jonathan Nguyen (@jonathanguven) Team Lead
+- Nikko Timbol (@franznikko)
