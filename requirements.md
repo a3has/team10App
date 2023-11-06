@@ -27,222 +27,215 @@ Note: Actor is user in all use cases.
 
 
 ## Use Cases 
-Author: Sammy
 
-1. Edit User Profile 
+### Requirement 4 - Edit User Profiles
+**Author: Sammy**
+
 - **Pre-condition:** 
-1) User must have exsisting account
-2) User must be logged in 
+  - User must have exsisting account
+  - User must be logged in 
 - **Trigger:** 
-1. Click Profile Icon
-2. Click Edit USer Profile
+  - Click Profile Icon
+  - Click Edit USer Profile
 - **Primary Sequence:**
-1. User logs in with verified account
-2. Navagate to User Profile
-3. System will display the users information such as email username ect. 
-4. Select field to edit
-5. After editing user must save the changes
-6. System checks to see if information is valid 
-7. System updates the information
-8. Get notification that the information has been update
+  1. User logs in with verified account
+  2. Navagate to User Profile
+  3. System will display the users information such as email username ect. 
+  4. Select field to edit
+  5. After editing user must save the changes
+  6. System checks to see if information is valid 
+  7. System updates the information
+  8. Get notification that the information has been update
 - **Primary Postconditions:** 
-Users profile has been updated
-User can view their update profiels
+  - Users profile has been updated
+  - User can view their update profiels
 - **Alternate Sequence:** 
-1. User inputed invalid data
-2. User must change to valid data
+  1. User inputed invalid data
+  2. User must change to valid data
 - **Alternate Sequence <optional>:** 
-1. User able to cancel the request to edit profile
-2. Return to old user profile information
+  1. User able to cancel the request to edit profile
+  2. Return to old user profile information
 
 
-## Use Cases 
-Author: Sammy
-1. Todo Checklist
+### Requirement 10 - Notes can be checked off on todo list
+**Author: Sammy**
 - **Pre-condition:** 
-1) User must be logged in
+  - User must be logged in
 - **Trigger:** 
-1) User clicks Todo button
+  - User clicks Todo button
 - **Primary Sequence:**
-1. User logs in
-2. User clicks on todo button
-3. Creates an option to create a new task
-4. Able to apply a checkmark when done
-5. Able to delete a todo 
-6. User can edit the name 
-7. System can set remiders 
+  1. User logs in
+  2. User clicks on todo button
+  3. Creates an option to create a new task
+  4. Able to apply a checkmark when done
+  5. Able to delete a todo 
+  6. User can edit the name 
+  7. System can set remiders 
 - **Primary Postconditions:** 
-1) Check list is updated with newly created task 
-2) User can choose to edit, delete, or mark as done
+  - Check list is updated with newly created task 
+  - User can choose to edit, delete, or mark as done
 - **Alternate Sequence:** 
-1. User can choose to do the task at antoher time
+  1. User can choose to do the task at antoher time
 
 
-## Use Cases 
-Author: Sammy
-1. Advance search items with regular expressions or filters by categories
+### Requirement 1 - Advance search items with regular expressions or filters by categories
+**Author: Sammy**
 - **Pre-condition:** 
-1) User must be logged in
-2) System should have a database with searchable items
+  - User must be logged in
+  - System should have a database with searchable items
 - **Trigger:** 
-1) Click on search
-2) Click on advance search
+  - Click on search
+  - Click on advance search
 - **Primary Sequence:**
-1. User access the search functionality
-2. User sees advance seach button
-3. Can type in expression to seacrh for
-4. Can use filters from dropdown list
-5. System will search the data bases for the information 
-6. System displays the results of the search 
-7. User can chaneg their search expression
+  1. User access the search functionality
+  2. User sees advance seach button
+  3. Can type in expression to seacrh for
+  4. Can use filters from dropdown list
+  5. System will search the data bases for the information 
+  6. System displays the results of the search 
+  7. User can chaneg their search expression
 - **Primary Postconditions:** 
-1) User gets a list of the search expression or the filtered content 
+  1) User gets a list of the search expression or the filtered content 
 - **Alternate Sequence:** 
-1. Invalid Search
-2. Retype another expression
+  1. Invalid Search
+  2. Retype another expression
 - **Alternate Sequence <optional>:**
-1. Expression not found
-2. Retype new expression
+  1. Expression not found
+  2. Retype new expression
 
 
-## Use Cases
-Author: Abdulkader
-
-**Connect with any external API (Google calendar)**
+### Requirement 2 - Connect with Google Calendar API
+**Author: Abdulkader**
 
 - **Pre-condition:**
-1. External Google API documentation and access credentials are available. 
-2. User must be logged in to interact with calendar.
+  - External Google API documentation and access credentials are available. 
+  - User must be logged in to interact with calendar.
 
 - **Trigger:**
-1. No specific trigger besides login; calendar always visible to user. 
+  - No specific trigger besides login; calendar always visible to user. 
 
 - **Primary Sequence:**
-1. User lands on app home page, or subsequent menus.
-2. Calendar box loads in top right corner of screen.
-3. User interacts with calendar, days, months, years. 
+  1. User lands on app home page, or subsequent menus.
+  2. Calendar box loads in top right corner of screen.
+  3. User interacts with calendar, days, months, years. 
 
 - **Primary Postconditions:**
-1. User returns to notes activities after viewing calendar info. 
+  1. User returns to notes activities after viewing calendar info. 
 
 - **Alternate Sequence:**
-1. User logs in using Google to import personal details and events from own calendar.
+  1. User logs in using Google to import personal details and events from own calendar.
 
 Sketch for calendar here
 [gCal](images/gCal.png)
 
 
-## Use Cases
-Author: Abdulkader
-
-**Change note background color**
+### Requirement 5 - Change note background color
+**Author: Abdulkader**
 
 - **Pre-condition:**
-1. User is logged in.
-2. User is in edit note mode.
+  - User is logged in.
+  - User is in edit note mode.
 
 - **Trigger:**
-1. User clicks the eye-drop icon in the edit note windows.
+  - User clicks the eye-drop icon in the edit note windows.
 
 - **Primary Sequence:**
-1. A color pallete is shown. 
-2. User selects preferred color from selection.
-3. A preview of the note with new color is shown.
-4. User clicks apply to finalize selection.
+  1. A color pallete is shown. 
+  2. User selects preferred color from selection.
+  3. A preview of the note with new color is shown.
+  4. User clicks apply to finalize selection.
 
 - **Primary Postconditions:**
-1. Note with new color is updateda and saved.
+  1. Note with new color is updateda and saved.
 
 - **Alternate Sequence:**
-1. A eye-drop icon is clicked on an already colored note. 
-2. A default color button is shown to return note back to white. 
+  1. A eye-drop icon is clicked on an already colored note. 
+  2. A default color button is shown to return note back to white. 
 
 Sketch for color here
 [eyedrop](images/eyedrop.png)
 
-## Use Cases
-Author: Abdulkader
+### Requirement 11 - Login with Account
+**Author: Abdulkader**
 
-**Login Account**
 
 - **Pre-condition:**
-1. User has to be logged out.
+  - User has to be logged out.
 
 - **Trigger:**
-1. User navigates to login page.
+  - User navigates to login page.
 
 - **Primary Sequence:**
-1. A username and password text boxes are shown. 
-2. User enters data. 
-3. User clicks login button under text boxes. 
+  1. A username and password text boxes are shown. 
+  2. User enters data. 
+  3. User clicks login button under text boxes. 
 
 - **Primary Postconditions:**
-1. User gets access to their notes app home page with own info.
+  1. User gets access to their notes app home page with own info.
 
 - **Alternate Sequence:**
-1. User does not already have an account or wrong user/pass (will not be specified for safety).
-2. A create account button is shown. 
-3. User creates username, password with confirmation.
-4. User land on own home page. 
+  1. User does not already have an account or wrong user/pass (will not be specified for safety).
+  2. A create account button is shown. 
+  3. User creates username, password with confirmation.
+  4. User land on own home page. 
 
 Sketch for login here
 [login](images/login.png)
 
-## Use Cases
+### Requirement 13 - Create Note Folder (grouping)
 Author: Jonathan
 
-**Create note categories/containers**
-
 - **Pre-condition:**
-1. User logged in.
-2. User has atleast one note created.
+  - User logged in.
+  - User has atleast one note created.
 
 - **Trigger:**
-1. User clicks on create category button.
+  - User clicks on create category button.
 
 - **Primary Sequence:**
-1. Text box appears to enter folder name.
-2. List of existing notes is shown.
-3. User can select one or more notes to add to folder.
-3. User clicks apply to confirm selections.
-
-- **Primary Postconditions:**
-1. Folder created
-2. Chosen notes are moved into new file/container. 
+  1. Text box appears to enter folder name.
+  2. List of existing notes is shown.
+  3. User can select one or more notes to add to folder.
+  3. User clicks apply to confirm selections.
 
 - **Alternate Sequence:**
-1. Folder name already exists. 
-2. Enter a new name for folder. 
+  1. Folder name already exists. 
+  2. Enter a new name for folder. 
+
+- **Primary Postconditions:**
+  1. Folder created
+  2. Chosen notes are moved into new file/container. 
+
+
 
 Sketch for folder creation here
 [folder](images/folder.png)
 
-## Use Cases
-Author: Abdulkader
-
-**Image Support**
+### Requirement 14 - Attaching image to notes
+**Author: Abdulkader**
 
 - **Pre-condition:**
-1. User logged in.
-2. User on edit note mode.
+  - User logged in.
+  - User on edit note mode.
 
 - **Trigger:**
-1. User clicks on add image icon.
+- User clicks on add image icon.
 
 - **Primary Sequence:**
-1. File browser opens up.
-2. User chooses image file from local windows or mac system to upload to note.
-3. User clicks the upload button. 
-
-- **Primary Postconditions:**
-1. Image is inserted into note and saved in database.
+  1. File browser opens up.
+  2. User chooses image file from local windows or mac system to upload to note.
+  3. User clicks the upload button. 
 
 - **Alternate Sequence:**
-1. Chosen file extension is not supported. 
-2. Prompts the user to select a proper image file (.jpg, .jpeg, .png).
+  - Chosen file extension is not supported. 
+  - Prompts the user to select a proper image file (.jpg, .jpeg, .png).
 
-Sketch for image insert here
-[imgIns](images/imgIns.png)
+- **Postconditions:**
+  - Image is inserted into note and saved in database.
+
+
+
+  Sketch for image insert [here](images/imgIns.png)
 
 ### Requirement 7 - View Note
 **Author: Jonathan**
@@ -311,3 +304,70 @@ Sketch for image insert here
   - The user has successfully deleted the note (or no changes occurred)
   - If note was deleted, user is back in home page, and can create/click on other notes.
   - If not deleted, user can choose to edit or delete the note again.
+
+### Requirement 1 - Visualize note connections
+**Author: Nikko**
+
+- **Pre-condition**
+  1. Users must have an existing account
+- **Trigger**
+  1. User logs in
+- **Primary Sequence**
+  1. User logs in with a verified account
+  2. The system sends the user to the home page and displays the highest-level folder(s) within the system
+  3. The user selects right clicks folder and selects the visualize option
+  4. System displays a tree with all folders and all notes within them
+- **Primary Postconditions**
+  - Users can view the note and open subsequent folders when selected from the tree
+  - Users can manipulate the note and its subfolders by moving them around changing text, or deleting
+- **Alternative Sequence**
+  1. User fails to log in with a verified account
+  Prompt the user to try again 
+- **Alternative Sequence**
+  1. The user does not have any existing notes or folders in the system
+  The system prompts users that they do not have any notes and to create one now.
+
+### Requirement 6 - Create Note
+**Author: Nikko**
+
+- **Pre-condition:**
+  1) The user must have an existing account
+  2) The user must be logged in
+- **Trigger:**
+  1) The user selects to create a new note
+- **Primary Sequence**
+  1. The user navigates to the folder they would like to put the note in
+  2. User clicks create a new note
+  3. The system prompts the user to write the name of the note in a text box
+  4. The user types the name of the note.
+  5. User clicks create
+  6. The system saves the information creates a note in the folder, and displays the note to the user.
+- **Primary Postconditions:**
+  - Users can manipulate the contents of the note such as adding or removing text or displaying - images
+  - Users can delete the note
+  - Users can move the note
+- **Alternative Sequence**
+  1. The user fails to write a title for the note
+  2. The system displays an error stating no title was given to the note and to give one before selecting create
+
+### Requirement 12 - Support text formatting (Adding bold, italic, and underlining)
+**Author Nikko**
+
+- **Pre-condition:**
+  1. User must be logged in
+  2. The user must be in an existing note.
+- **Trigger:**
+  1. The user selects one of the supported text-formatting options when typing in a textbox or highlighting selected text.
+- **Primary Sequence:**
+  1. The user navigates to the folder where the note they want to edit is contained
+  2. The user selects the note that they want to edit.
+  3. The system opens the note and displays the contents to the user.
+  4. The user clicks on a textbox within the note
+  5. The system allows the user to type in the note and shows options to bold, italicize, or underline the text the user is inputting.
+
+- **Primary Post-conditions:**
+  - Users can select one of the options and it will change the upcoming text or highlighted text to be bolded, italicized, or underlined
+  - Users can select one of these options if already selected to turn off the option for upcoming text or remove it on the highlighted text.
+
+- **Alternative sequence:**
+  - N/a
