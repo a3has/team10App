@@ -17,4 +17,7 @@
 - Set safety measures for main branch protection. 
 - Commit on branch only then team lead pulls request.
 - Did practice run and commits for trial. 
+- Discussed commands like git pull, git push, git switch, and,  git commit
+
+
 
