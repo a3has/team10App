@@ -1,29 +1,20 @@
-## Instructions
-- Delete this block before adding to your repository.
-- Delete any instructions you see below they will be within < >
-- This schedule should reflect the meetings from the start of the project until the end of the semester.
-- Write at least 1 meeting per week until the end of the semester
 
 ## Meetings
-### 11/2/2023 @ 8:00 Pm
-- Who attended the meeting
-- Team updates (15min or less)
-<Each team member gives an update of what they did from the last meeting and what
-they plan to do next. If they are stuck, bring it up here to see if others can
-help.>
-- <name> worked on X. Will work on Y next.
-- pair-programming (optional) (25 mins)
-<- Pair program on one part of the project. Driver will be the person responsible
-for that requirement.>
-- Summarize group progress
+### 2023-11-02 at 20:00
+- Attendees: Aboudi, Nikko, Jonathan, Sammy.
+- Team setup and project launch (1hr)
+- Setup expectations, and get acclimated with team. 
+- Developped 14 Functional Requirements and 2 Non-Functional requirements. 
+- Aboudi: API, RBG, Login, Images, Pass Hash.
+- Nikko: Note Connections, Create, formatting, multilingual.
+- Jonathan: Read, Update, Delete, Files/Folders.
+- Sammy: Search, user profile, todo.
 
-### 2023-10-08 at 13:30
-<meeting template would go here>
-<only fill in template once you had the meeting>
-<see example on the last date>
-<use date format YYYY-MM-DD at HH:MM>
 
-### 2023-10-15 at 10:30
-<meeting template would go here>
-<only fill in template once you had the meeting>
+### 2023-11-03 at 18:00
+- Attendees: Aboudi, Nikko, Jonathan, Sammy.
+- Discussed Github best practices and no-no's (1hr).
+- Set safety measures for main branch protection. 
+- Commit on branch only then team lead pulls request.
+- Did practice run and commits for trial. 
 
