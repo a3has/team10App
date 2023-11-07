@@ -18,20 +18,6 @@ cute
 12. *Connect with any external API (google calendar).
 13. Support for image attachments.
 14. ToDo Checklist
-1. Login account, alternate sequence is create account (Ability to create an account or log into an exsisting account).
-2. Edit User profiles (Ability to change user profile name, password, and picture).
-3. Create note (Ability to create a new blank note).
-4. Read Note (Ability to view previous notes written).
-5. Edit Note (Ability to update the notes).
-6. Delete note (Ability to delete a note).
-7. Create note categories/containers.
-8. Support text formatting (Adding bold, italic, and underline).
-9. *Advance search items with regular expressions or filters by categories (Abiltiiy to search for key words in the notes).
-10. Change note background color (Ability to change the color of the background).
-11. *Visualize note connections (Visualization of the note pages with sub folders).
-12. *Connect with any external API (google calendar).
-13. Support for image attachments.
-14. ToDo Checklist
 
 Note: Actor is user in all use cases.
 
@@ -394,5 +380,5 @@ Sketch for image insert [here](images/imgIns.png)
   - Check list is updated with newly created task 
   - User can choose to edit, delete, or mark as done
 - **Alternate Sequence:** 
-  1. User can choose to do the task at antoher time
+  1. User can choose to do the task at another time
 
