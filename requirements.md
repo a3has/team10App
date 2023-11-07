@@ -130,49 +130,6 @@ Sketch for creating note here
 
 Sketch for Requirement 4 [here](images/View_Note.png)
 
-### Requirement 3 - Create Note
-**Author: Nikko**
-
-- **Pre-condition:**
-  1) The user must have an existing account
-  2) The user must be logged in
-- **Trigger:**
-  1) The user selects to create a new note
-- **Primary Sequence**
-  1. The user navigates to the folder they would like to put the note in
-  2. User clicks create a new note
-  3. The system prompts the user to write the name of the note in a text box
-  4. The user types the name of the note.
-  5. User clicks create
-  6. The system saves the information creates a note in the folder, and displays the note to the user.
-- **Primary Postconditions:**
-  - Users can manipulate the contents of the note such as adding or removing text or displaying - images
-  - Users can delete the note
-  - Users can move the note
-- **Alternative Sequence**
-  1. The user fails to write a title for the note
-  2. The system displays an error stating no title was given to the note and to give one before selecting create
-
-### Requirement 4 - View Note
-**Author: Jonathan**
-- **Preconditions**
-  - User has created an account and is logged in.
-  - User has at least one note created, and note is displayed in notes list.
-- **Trigger**
-  - User clicks on note from list of notes.
-- **Primary Sequence**
-  1. User clicks on the name of the note they want to view the contents of.
-  2. Application responds to click action by expanding the clicked note item.
-  3. The full content of the note is displayed to the user, allowing user to read it.
-- **Alternate Sequence - User clicks on wrong note**
-  1. The wrong note expands.
-  2. The user clicks on the note name again to collapse it.
-  3. The user clicks on the correct note to view its content.
-- **Postconditions**
-  - The user has viewed the content of the note.
-  - The user can choose to take further actions, such as editing or deleting the note.
-
-Sketch for Requirement 4 [here](images/View_Note.png)
 
 ### Requirement 5 - Edit Note
 **Author: Jonathan**
