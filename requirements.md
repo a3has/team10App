@@ -31,7 +31,7 @@ Note: Actor is user in all use cases.
 
 ### Requirement 4 - Edit User Profiles
 **Author: Sammy**
-
+![User Profile](/images/Edit%20Profile.png)
 - **Pre-condition:** 
   - User must have exsisting account
   - User must be logged in 
@@ -60,6 +60,7 @@ Note: Actor is user in all use cases.
 
 ### Requirement 10 - Notes can be checked off on todo list
 **Author: Sammy**
+![To Do Lists](/images/To%20Do%20List.png)
 - **Pre-condition:** 
   - User must be logged in
 - **Trigger:** 
@@ -81,6 +82,7 @@ Note: Actor is user in all use cases.
 
 ### Requirement 1 - Advance search items with regular expressions or filters by categories
 **Author: Sammy**
+![To Do Lists](/images/Advanced%20Search.png)
 - **Pre-condition:** 
   - User must be logged in
   - System should have a database with searchable items
