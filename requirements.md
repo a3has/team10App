@@ -120,6 +120,9 @@ Sketch for login here
   1. The user fails to write a title for the note
   2. The system displays an error stating no title was given to the note and to give one before selecting create
 
+Sketch for creating note here
+[notecreation](images/NoteCreation.png)
+
 ### Requirement 4 - View Note
 **Author: Jonathan**
 - **Preconditions**
@@ -140,9 +143,8 @@ Sketch for login here
   - The user can choose to take further actions, such as editing or deleting the note.
 
 Sketch for Requirement 4 [here](images/View_Note.png)
-Sketch for Requirement 4 [here](images/View_Note.png)
 
-### Requirement 5 - Edit Note
+
 ### Requirement 5 - Edit Note
 **Author: Jonathan**
 - **Preconditions**
@@ -169,9 +171,7 @@ Sketch for Requirement 4 [here](images/View_Note.png)
   - The user can choose to take further actions, such as editing again or deleting the note.
 
 Sketch for Requirement 5 [here](images/Edit_Note.png)
-Sketch for Requirement 5 [here](images/Edit_Note.png)
 
-### Requirement 6 - Delete Note
 ### Requirement 6 - Delete Note
 **Author: Jonathan**
 - **Preconditions**
@@ -246,6 +246,8 @@ Sketch for folder creation here
 
 - **Alternative sequence:**
   - N/a
+Sketch for text formatting support here
+[formatting](images/Formatting.png)
 
 ### Requirement 9 - Advance search items with regular expressions or filters by categories
 **Author: Sammy**
@@ -321,6 +323,9 @@ Sketch for color here
   1. The user does not have any existing notes or folders in the system
   The system prompts users that they do not have any notes and to create one now.
 
+Sketch for visulization here
+[visulization](images/Hiearchy.png)
+
 ### Requirement 12 - Connect with Google Calendar API
 **Author: Abdulkader**
 
@@ -390,3 +395,4 @@ Sketch for image insert [here](images/imgIns.png)
   - User can choose to edit, delete, or mark as done
 - **Alternate Sequence:** 
   1. User can choose to do the task at antoher time
+
