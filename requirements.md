@@ -67,7 +67,7 @@ Sketch for login here
 - **Primary Sequence:**
   1. User logs in with verified account
   2. Navagate to User Profile
-  3. System will display the users information such as email username ect. 
+  3. System will display the users information such as email username, profile image ect. 
   4. Select field to edit
   5. After editing user must save the changes
   6. System checks to see if information is valid 
@@ -250,6 +250,7 @@ Sketch for text formatting support here
   2. User sees advance seach button
   3. Can type in expression to seacrh for
   4. Can use filters from dropdown list
+  5. Users can filter notes by category/folder name
   5. System will search the data bases for the information 
   6. System displays the results of the search 
   7. User can chaneg their search expression
