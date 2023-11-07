@@ -259,6 +259,8 @@ Sketch for folder creation here
   - The user has viewed the content of the note.
   - The user can choose to take further actions, such as editing or deleting the note.
 
+Sketch for Requirement 7 [here](images/View_Note.png)
+
 ### Requirement 8 - Edit Note
 **Author: Jonathan**
 - **Preconditions**
@@ -284,6 +286,8 @@ Sketch for folder creation here
   - The user has successfully changed the contents of the note, or no changes were made at all.
   - The user can choose to take further actions, such as editing again or deleting the note.
 
+Sketch for Requirement 8 [here](images/Edit_Note.png)
+
 ### Requirement 9 - Delete Note
 **Author: Jonathan**
 - **Preconditions**
@@ -307,6 +311,8 @@ Sketch for folder creation here
   - The user has successfully deleted the note (or no changes occurred)
   - If note was deleted, user is back in home page, and can create/click on other notes.
   - If not deleted, user can choose to edit or delete the note again.
+
+Sketch for Requirement 9 [here](images/Delete_Note.png)
 
 ### Requirement 1 - Visualize note connections
 **Author: Nikko**
