@@ -312,7 +312,7 @@ Sketch for Requirement 8 [here](images/Edit_Note.png)
   - If note was deleted, user is back in home page, and can create/click on other notes.
   - If not deleted, user can choose to edit or delete the note again.
 
-Sketch for Requirement 9 [here](images/Delete_Note.png)
+Sketch for Requirement 9 [here](images/Delete_Note.png )
 
 ### Requirement 1 - Visualize note connections
 **Author: Nikko**
