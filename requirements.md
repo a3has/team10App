@@ -82,7 +82,7 @@ Note: Actor is user in all use cases.
 
 ### Requirement 1 - Advance search items with regular expressions or filters by categories
 **Author: Sammy**
-![To Do Lists](/images/Advanced%20Search.png)
+![Advnaced Search](/images/Advanced%20Search.png)
 - **Pre-condition:** 
   - User must be logged in
   - System should have a database with searchable items
