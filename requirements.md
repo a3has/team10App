@@ -340,4 +340,49 @@ Author: Abdulkader
 
 Sketch for image insert here
 [imgIns](images/imgIns.png)
+<<<<<<< HEAD
 >>>>>>> c3fd60b (Abdulkader Reqs and sketches)
+=======
+
+### Requirement 7 - View Note
+**Author: Jonathan**
+- **Preconditions**
+  - User has created an account and is logged in
+  - User has at least one note created, and note is displayed in notes list
+- **Trigger**
+  - User clicks on note from list of notes
+- **Primary Sequence**
+  1. User clicks on the name of the note they want to view the contents of
+  2. Application responds to click action by expanding the clicked note item
+  3. The full content of the note is displayed to the user, allowing them to read
+- **Alternate Sequence - User clicks on wrong note**
+  1. The wrong note expands .
+  2. The user clicks on the note name again to collapse it.
+  3. The user clicks on the correct note to view its content.
+- **Postconditions**
+  - The user has viewed the content of the note.
+  - The user can choose to take further actions, such as editing or deleting the note
+
+### Requirement 8 - Edit Note
+**Author: Jonathan**
+- **Preconditions**
+  - User has created an account and is logged in
+  - User has at least one note created, and note is displayed in notes list
+- **Trigger**
+  - User clicks on note from list of notes
+- **Primary Sequence**
+  1. User clicks on the name of the note they want to edit the contents of
+  2. Application responds to click action by expanding the clicked note item
+  3. The full content of the note is displayed to the user, along with 'edit' button on top right of note
+  4. User clicks on the 'edit' button 
+  5. Note view updates to change view mode to edit mode, allowing user to modify the contents of the note.
+  6. User clicks 'save' button after completing edits of the selected note.
+  7. Application changes note back to view mode, displaying the updated content.
+- **Alternate Sequence - User cancels edits made to note**
+  1. The wrong note expands .
+  2. The user clicks on the note name again to collapse it.
+  3. The user clicks on the correct note to view its content.
+- **Postconditions**
+  - The user has viewed the content of the note.
+  - The user can choose to take further actions, such as editing or deleting the note
+>>>>>>> 7913ea4 (@jonathan completed requirements 7 and 8)
