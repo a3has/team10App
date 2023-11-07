@@ -238,7 +238,7 @@ Sketch for text formatting support here
 
 ### Requirement 9 - Advance search items with regular expressions or filters by categories
 **Author: Sammy**
-[To Do Lists!](/images/Advanced%20Search.png)
+[Advanced Search](/images/Advanced%20Search.png)
 - **Pre-condition:** 
   - User must be logged in
   - System should have a database with searchable items
