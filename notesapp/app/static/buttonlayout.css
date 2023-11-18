@@ -32,13 +32,13 @@
     margin-right: 60px;
 }
 
-button.add-note {
-    background-color: #008CBA; /* Blue background color */
-    color: white; /* White text color */
-    border: none; /* Remove borders */
-    border-radius: 4px; /* Rounded corners */
-    padding: 10px;
-    cursor: pointer;
+.add-note {
+    height: 50px;
+    width: 100px;
+    display: inline block;
+    background-color: green; /* Change 'green' to your preferred color */
+    color: white;
+    margin-right: 60px;
 }
 .logout{
     height: 50px;
