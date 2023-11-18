@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="sign-in.css">
     {% if title %}
     <title>{{ title }} - Sticky Notes</title>
     {% else %}
@@ -10,7 +11,7 @@
   <body>
     <div>
       Sticky Notes:
-      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('home') }}">Home</a>
       {% if current_user.is_anonymous %}
       <a href="{{ url_for('login') }}">Login</a>
       {% else %}

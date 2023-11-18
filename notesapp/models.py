@@ -35,3 +35,8 @@ class NotePost(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+class Todo(db.Model):
+    task_id=db.Column(db.Integer,primary_key=True)
+    name=db.Column(db.String(100))
+    done=db.Column(db.Boolean)
