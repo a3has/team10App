@@ -18,7 +18,9 @@ depends_on = ${repr(depends_on)}
 
 def upgrade():
     ${upgrades if upgrades else "pass"}
+    op.add_column('note', sa.Column('name', sa.String(length=100), nullable=False))
 
 
 def downgrade():
     ${downgrades if downgrades else "pass"}
+    op.drop_column('note', 'name')
