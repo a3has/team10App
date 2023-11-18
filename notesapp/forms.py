@@ -31,5 +31,6 @@ class RegistrationForm(FlaskForm):
 
 
 class NoteForm(FlaskForm):
-    content = StringField('Note Content', validators=[DataRequired()])
+    name = StringField('Note Name', validators=[DataRequired()])
+    content = TextAreaField('Note Content', validators=[DataRequired()])
     submit = SubmitField('Add Note')

@@ -20,6 +20,8 @@
     {% endwith %}
     <form method="POST" action="">
         {{ form.hidden_tag() }}
+        {{ form.name.label }} {{ form.name }}
+        <br>
         {{ form.content.label }} {{ form.content }}
         <br>
         <button type="submit" class="add-note">Add Note</button>
