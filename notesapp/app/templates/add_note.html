@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Note</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Add Note</h1>
@@ -21,10 +22,10 @@
         {{ form.hidden_tag() }}
         {{ form.content.label }} {{ form.content }}
         <br>
-        <button type="submit">Add Note</button>
+        <button type="submit" class="add-note">Add Note</button>
     </form>
     <form action="{{ url_for('show_notes') }}">
-        <button type="submit">Back to Notes</button>
+        <button type="submit" class="back-to-notes">Back to Notes</button>
     </form>
 </body>
 </html>
