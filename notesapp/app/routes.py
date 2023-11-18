@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from forms import LoginForm
 from flask_login import current_user, login_user, logout_user, login_required
-from models import User
+from models import User, Todo
 from werkzeug.urls import url_parse
 from forms import RegistrationForm
 
@@ -24,6 +24,9 @@ def index():
     ]
     return render_template('index.html', title='Home Page', posts=posts)
 
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -57,6 +60,46 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route('/profile', methods=['GET', 'POST'])
+def edit_profile():
+    if request.method == 'POST':
+
+        user_data = {
+            'name': request.form.get('name'),
+            'biography': request.form.get('biography')
+        }
+
+        print("Updated user data:", user_data)
+
+    return render_template('userprofile.html')
+
+@app.route('/todo')
+def todo():
+    todo_list=Todo.query.all()
+    return render_template('todo.html',todo_list=todo_list)
+
+@app.route('/add',methods=['POST'])
+def add():
+    name = request.form.get("name")
+    new_task=Todo(name=name,done=False)
+    db.session.add(new_task)
+    db.session.commit()
+    return redirect(url_for("todo"))
+
+@app.route('/update/<int:todo_id>')
+def update(todo_id):
+    todo= Todo.query.get(todo_id)
+    todo.done=not todo.done
+    db.session.commit()
+    return redirect(url_for("todo"))
+
+
+@app.route('/delete/<int:todo_id>')
+def delete(todo_id):
+    todo= Todo.query.get(todo_id)
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for("todo"))
 
 @app.route('/logout')
 def logout():

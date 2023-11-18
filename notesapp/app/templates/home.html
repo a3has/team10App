@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='buttonlayout.css') }}">
+</head>
+
+<body>
+    <h2 style="text-align: center;">Sticky Notes</h2>
+
+    <div class="button-container">
+
+
+        <a href="profile"> 
+            <button class="profile">User Profile</button>
+        </a>
+
+        <a href="todo">
+            <button class="todo">To Do List</button>
+        </a>
+
+        <a href="add-note">
+            <button class="add-note">Add Note</button>
+        </a>
+        <a href="logout">
+            <button class="logout">Logout</button>
+        </a>
+    </div>
+</body>
+
+</html>
