@@ -118,9 +118,8 @@ def add_note():
     form = NoteForm()
 
     if form.validate_on_submit():
-        name = form.name.data
         content = form.content.data
-        new_note = Note(name=name, content=content)
+        new_note = Note(content=content)
         db.session.add(new_note)
         db.session.commit()
         flash('Note added successfully!', 'success')
