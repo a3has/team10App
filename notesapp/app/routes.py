@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from forms import LoginForm
+from forms import LoginForm, NoteForm
 from flask_login import current_user, login_user, logout_user, login_required
-from models import User, Todo
+from models import Note, User, Todo
 from werkzeug.urls import url_parse
 from forms import RegistrationForm
 
@@ -105,3 +105,25 @@ def delete(todo_id):
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+
+@app.route('/notes')  # Change the route to '/notes'
+def show_notes():
+    notes = Note.query.all()
+    return render_template('notes.html', notes=notes)
+
+@app.route('/add_note', methods=['GET', 'POST'])
+def add_note():
+    form = NoteForm()
+
+    if form.validate_on_submit():
+        content = form.content.data
+        new_note = Note(content=content)
+        db.session.add(new_note)
+        db.session.commit()
+        flash('Note added successfully!', 'success')
+        return redirect(url_for('show_notes'))  # Update the endpoint
+
+    return render_template('add_note.html', form=form)
+
