@@ -108,22 +108,22 @@ def logout():
 
 
 
-@app.route('/notes')  # Change the route to '/notes'
+@app.route('/notes')
 def show_notes():
     notes = Note.query.all()
     return render_template('notes.html', notes=notes)
 
-@app.route('/add_note', methods=['GET', 'POST'])
+@app.route('/add-note', methods=['GET', 'POST'])
 def add_note():
     form = NoteForm()
 
     if form.validate_on_submit():
+        name = form.name.data
         content = form.content.data
-        new_note = Note(content=content)
+        new_note = Note(name=name, content=content)
         db.session.add(new_note)
         db.session.commit()
         flash('Note added successfully!', 'success')
-        return redirect(url_for('show_notes'))  # Update the endpoint
+        return redirect(url_for('show_notes'))
 
     return render_template('add_note.html', form=form)
-
