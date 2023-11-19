@@ -4,6 +4,7 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from models import User
 
 
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -31,5 +32,4 @@ class RegistrationForm(FlaskForm):
 
 
 class NoteForm(FlaskForm):
-    content = TextAreaField('Note Content', validators=[DataRequired()])
-    submit = SubmitField('Add Note')
+    content = TextAreaField('Content', validators=[DataRequired()])

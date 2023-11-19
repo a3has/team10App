@@ -49,3 +49,12 @@
     margin-right: 60px;
 }
 
+.add_note{
+    height: 50px;
+    width: 100px;
+    display: inline block;
+    background-color: rgb(128, 0, 45);
+    color: white;
+    margin-right: 60px;
+}
+

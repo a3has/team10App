@@ -107,13 +107,12 @@ def logout():
     return redirect(url_for('index'))
 
 
-
 @app.route('/notes')
 def show_notes():
     notes = Note.query.all()
     return render_template('notes.html', notes=notes)
 
-@app.route('/add-note', methods=['GET', 'POST'])
+@app.route('/add_note', methods=['GET', 'POST'])
 def add_note():
     form = NoteForm()
 
@@ -126,3 +125,4 @@ def add_note():
         return redirect(url_for('show_notes'))
 
     return render_template('add_note.html', form=form)
+
