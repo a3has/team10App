@@ -28,7 +28,7 @@
                 </div>
             {% endfor %}
         </div>
-        <form action="{{ url_for('add_note') }}" class="add-note-form">
+        <form action="{{ url_for('create_note') }}" class="add-note-form">
             <button type="submit" class="button">Add Note</button>
         </form>
         <a href="{{ url_for('home') }}" class="button">Back to Home</a>

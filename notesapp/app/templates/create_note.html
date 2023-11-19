@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h1>Add Note</h1>
-        <form method="POST" action="{{ url_for('add_note') }}" class="note-form">
+        <form method="POST" action="{{ url_for('create_note') }}" class="note-form">
             {{ form.hidden_tag() }}
             <div class="form-group">
                 <label for="content">Content:</label>

@@ -112,8 +112,8 @@ def show_notes():
     notes = Note.query.all()
     return render_template('notes.html', notes=notes)
 
-@app.route('/add_note', methods=['GET', 'POST'])
-def add_note():
+@app.route('/create_note', methods=['GET', 'POST'])
+def create_note():
     form = NoteForm()
 
     if form.validate_on_submit():
@@ -124,5 +124,5 @@ def add_note():
         flash('Note added successfully!', 'success')
         return redirect(url_for('show_notes'))
 
-    return render_template('add_note.html', form=form)
+    return render_template('create_note.html', form=form)
 
