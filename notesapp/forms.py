@@ -4,6 +4,8 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from models import User
 
 
+
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -28,3 +30,8 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class AdvancedSearchForm(FlaskForm):
+    task_name = StringField('Task Name')
+    is_complete = BooleanField('Completed')
+    submit = SubmitField('Search')
