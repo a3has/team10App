@@ -40,3 +40,4 @@ class Todo(db.Model):
     task_id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(100))
     done=db.Column(db.Boolean)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
