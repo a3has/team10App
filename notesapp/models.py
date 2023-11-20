@@ -41,3 +41,7 @@ class Todo(db.Model):
     name=db.Column(db.String(100))
     done=db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Note(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(500), nullable=False)

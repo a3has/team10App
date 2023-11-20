@@ -1,0 +1,82 @@
+/* createnote.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.note-box {
+    flex: 0 0 calc(33.333% - 20px); /* Adjust the percentage width based on the number of columns you want */
+    max-width: calc(33.333% - 20px); /* Adjust the max-width to prevent overflowing */
+    height: 200px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+.button {
+    flex: 1; /* Fill the whole row */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #45a049;
+}
+
+/* Additional styles for buttons in the /notes page */
+.add-note {
+    flex: 1; /* Fill the whole row */
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.add-note:hover {
+    background-color: #45a049;
+}
+
+/* Increase the size of the text box in /add_note */
+.note-content {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    height: 150px; /* Adjust the height as needed */
+}

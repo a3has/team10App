@@ -3,10 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_ckeditor import CKEditor
 import os
 
 app = Flask(__name__)
-
+ckeditor = CKEditor(app)
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config.from_mapping(
@@ -15,6 +16,7 @@ app.config.from_mapping(
         'DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db'),
     SQLALCHEMY_TRACK_MODIFICATIONS=False
 )
+
 
 login = LoginManager(app)
 login.login_view = 'login'
@@ -27,8 +29,12 @@ migrate = Migrate(app, db)
 # except exc.IntegrityError:
 #     db.session.rollback()
 
+
+
 with app.app_context():
     from models import User
     db.create_all()
 
 from app import routes  # NOQA
+
+

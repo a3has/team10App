@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from models import User
-
 
 
 
@@ -31,6 +30,9 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
+class NoteForm(FlaskForm):
+    content = TextAreaField('Content', validators=[DataRequired()])
+    
 class AdvancedSearchForm(FlaskForm):
     task_name = StringField('Task Name')
     is_complete = BooleanField('Completed')
