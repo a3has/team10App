@@ -30,6 +30,10 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-
 class NoteForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
+    
+class AdvancedSearchForm(FlaskForm):
+    task_name = StringField('Task Name')
+    is_complete = BooleanField('Completed')
+    submit = SubmitField('Search')

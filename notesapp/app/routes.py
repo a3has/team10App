@@ -4,7 +4,7 @@ from forms import LoginForm, NoteForm
 from flask_login import current_user, login_user, logout_user, login_required
 from models import Note, User, Todo
 from werkzeug.urls import url_parse
-from forms import RegistrationForm
+from forms import RegistrationForm, AdvancedSearchForm
 
 
 @app.route('/')
@@ -75,13 +75,15 @@ def edit_profile():
 
 @app.route('/todo')
 def todo():
-    todo_list=Todo.query.all()
+    todo_list = Todo.query.filter_by(user_id=current_user.id).all()
+    #todo_list = current_user.Todo.all()
+    #todo_list=Todo.query.all()
     return render_template('todo.html',todo_list=todo_list)
 
 @app.route('/add',methods=['POST'])
 def add():
     name = request.form.get("name")
-    new_task=Todo(name=name,done=False)
+    new_task=Todo(name=name,done=False,user_id=current_user.id)
     db.session.add(new_task)
     db.session.commit()
     return redirect(url_for("todo"))
@@ -100,6 +102,27 @@ def delete(todo_id):
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for("todo"))
+
+@app.route('/advanced_searching', methods=['GET', 'POST'])
+def advanced_search():
+    form = AdvancedSearchForm()
+
+    if form.validate_on_submit():
+        # Build the query based on form input
+        query = Todo.query
+
+        if form.task_name.data:
+            query = query.filter(Todo.name.ilike(f'%{form.task_name.data}%'))
+
+        if form.is_complete.data is not None:
+            query = query.filter(Todo.done == form.is_complete.data)
+
+        # Execute the query for all 
+        results = query.all()
+
+        return render_template('search_results.html', results=results)
+
+    return render_template('adv_search.html', form=form)
 
 @app.route('/logout')
 def logout():
