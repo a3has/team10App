@@ -109,7 +109,8 @@ def advanced_search():
 
     if form.validate_on_submit():
         # Build the query based on form input
-        query = Todo.query
+        query = Todo.query.filter_by(user_id=current_user.id)
+        #query = Todo.query
 
         if form.task_name.data:
             query = query.filter(Todo.name.ilike(f'%{form.task_name.data}%'))
