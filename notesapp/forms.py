@@ -29,7 +29,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class NoteForm2(FlaskForm):
-    title = TextAreaField('Title', validators=[DataRequired()])
+    title = StringField('Title', validators=[DataRequired()])
     note = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Submit')
 

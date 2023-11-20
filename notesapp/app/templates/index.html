@@ -35,8 +35,8 @@
       <p class="note-title">{{ note.title }}</p>
       <p class="note-content"><b>{{ note.body }}</p>
       <p class="note-details">
-        NoteID: {{ note.id }} <br>
-        Timestamp: {{ note.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+        Note ID: {{ note.id }} <br>
+        {{ note.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
       </p>
     </div>
     {% endfor %} 
