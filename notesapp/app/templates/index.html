@@ -29,14 +29,14 @@
     {% for note in posts %}
     <div class="sticky-note">
       <div class="note-actions">
-        <a href="/">Edit</a>
+        <a href="{{ url_for('edit_note', note_id=note.id) }}">Edit</a>
         <a href="/">Delete</a>
       </div>
       <p class="note-title">{{ note.title }}</p>
       <p class="note-content"><b>{{ note.body }}</p>
       <p class="note-details">
         Note ID: {{ note.id }} <br>
-        {{ note.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+        {{ note.timestamp.strftime('%Y/%m/%d %H:%M:%S') }}
       </p>
     </div>
     {% endfor %} 

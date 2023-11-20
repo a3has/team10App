@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db
 from forms import LoginForm, NoteForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -149,3 +149,20 @@ def create_note():
 
     return render_template('create_note.html', form=form)
 
+@app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
+@login_required
+def edit_note(note_id):
+    note = NotePost.query.get_or_404(note_id)
+    if note.author != current_user:
+        abort(403)
+    form = NoteForm2(obj=note)
+    if form.validate_on_submit():
+        note.title = form.title.data
+        note.body = form.note.data
+        db.session.commit()
+        flash('Your note has been updated!', 'success')
+        return redirect(url_for('index'))
+    elif request.method == 'GET':
+        form.title.data = note.title
+        form.note.data = note.body
+    return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)

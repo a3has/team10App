@@ -1,0 +1,41 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.sticky-note-edit {
+    background-color: #f4e442;
+    padding: 20px;
+    width: 300px; 
+    min-height: 250px; 
+    margin: 10px;
+    box-shadow: 2px 2px 4px #888888;
+    border-radius: 5px;
+
+}
+
+.form-control {
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+.form-control:focus {
+    border: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
