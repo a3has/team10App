@@ -75,13 +75,15 @@ def edit_profile():
 
 @app.route('/todo')
 def todo():
-    todo_list=Todo.query.all()
+    todo_list = Todo.query.filter_by(user_id=current_user.id).all()
+    #todo_list = current_user.Todo.all()
+    #todo_list=Todo.query.all()
     return render_template('todo.html',todo_list=todo_list)
 
 @app.route('/add',methods=['POST'])
 def add():
     name = request.form.get("name")
-    new_task=Todo(name=name,done=False)
+    new_task=Todo(name=name,done=False,user_id=current_user.id)
     db.session.add(new_task)
     db.session.commit()
     return redirect(url_for("todo"))
