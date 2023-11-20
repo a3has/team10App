@@ -1,2 +1,3 @@
-*/__pycache__/
+*/__pycache__
+notesapp/app/__pycache__
 notesapp/venv
