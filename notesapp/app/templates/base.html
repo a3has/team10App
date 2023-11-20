@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="sign-in.css">
+    {% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+    {% endblock %}
     {% if title %}
     <title>{{ title }} - Sticky Notes</title>
     {% else %}

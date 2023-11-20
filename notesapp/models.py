@@ -23,18 +23,22 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def get_notes(self):
+        return self.notes.order_by(NotePost.timestamp.desc()).all()
+
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
 
 class NotePost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(140))
+    title = db.Column(db.String(50))
+    body = db.Column(db.String(200))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return '<Post {}>'.format(self.body)
+        return '<Post {}: {}>'.format(self.title, self.body)
 
 class Todo(db.Model):
     task_id=db.Column(db.Integer,primary_key=True)

@@ -2,27 +2,27 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from forms import LoginForm, NoteForm
 from flask_login import current_user, login_user, logout_user, login_required
-from models import Note, User, Todo
+from models import Note, User, Todo, NotePost
 from werkzeug.urls import url_parse
-from forms import RegistrationForm, AdvancedSearchForm
+from forms import RegistrationForm, AdvancedSearchForm, NoteForm2
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
     # user = {'username': 'Aboudi'}
-    posts = [
-        {
-            # 'author': {'username': 'John'},
-            'body': 'This is the post login landing page.'
-        },
-        {
-            # 'author': {'username': 'Susan'},
-            'body': 'Work in progress. Need to give names for each note instead of "username" says.'
-        }
-    ]
-    return render_template('index.html', title='Home Page', posts=posts)
+    form = NoteForm2()
+    if form.validate_on_submit():
+        note = NotePost(title=form.title.data, body=form.note.data, author=current_user)
+        db.session.add(note)
+        db.session.commit()
+        flash('Note Created')
+        return redirect(url_for('index'))
+    else:
+        print(form.errors)
+    posts = current_user.get_notes()
+    return render_template('index.html', title='Home Page', form=form, posts=posts)
 
 @app.route('/home')
 def home():
