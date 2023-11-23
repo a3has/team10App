@@ -8,23 +8,24 @@ from forms import RegistrationForm, AdvancedSearchForm, NoteForm2
 
 
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+
+@app.route('/notes', methods=['GET', 'POST'])
 @login_required
-def index():
+def notes():
     form = NoteForm2()
     if form.validate_on_submit():
         note = NotePost(title=form.title.data, body=form.note.data, author=current_user)
         db.session.add(note)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('notes'))
     else:
         print(form.errors)
     posts = current_user.get_notes()
     return render_template('notes.html', title='Home Page', form=form, posts=posts)
-
-@app.route('/home')
-def home():
-    return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -127,8 +128,7 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-
-@app.route('/notes')
+@app.route('/notes-nikko')
 def show_notes():
     notes = Note.query.all()
     return render_template('notes-nikko.html', notes=notes)

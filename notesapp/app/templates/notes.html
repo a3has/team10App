@@ -1,10 +1,13 @@
 {% block stylesheet %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='notes.css') }}">
 {% endblock %}
 
 {% block content %}
   <div class="note-container">
-    <h1>Hi, {{ current_user.username }}!</h1>
+    <div class="header-container">
+      <button id="back">back</button>
+      <a href="{{ url_for('home') }}">StickyNotes!</a>
+    </div>
     <button id="create-note" class="create-note">Create Note</button>
     <form action="" method="post" class="note-form" style="display: none;">
       {{ form.hidden_tag() }}
@@ -49,10 +52,15 @@
 {% block scripts %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    var createNoteButton = document.getElementById('create-note');
-    var cancelButton = document.getElementById('cancel-button');
-    var noteForm = document.querySelector('.note-form');
-    var formModified = false;
+    const backButton = document.getElementById('back');
+    const createNoteButton = document.getElementById('create-note');
+    const cancelButton = document.getElementById('cancel-button');
+    const noteForm = document.querySelector('.note-form');
+    const formModified = false;
+
+    backButton.addEventListener('click', () => {
+      window.location.href = "{{ url_for('home') }}"
+    })
 
     createNoteButton.addEventListener('click', function() {
       noteForm.style.display = 'block';
@@ -73,10 +81,10 @@
         if (formModified) {
             var confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
             if (confirmLeave) {
-                window.location.href = "{{ url_for('index') }}";
+                window.location.href = "{{ url_for('notes') }}";
             }
         } else {
-            window.location.href = "{{ url_for('index') }}"; 
+            window.location.href = "{{ url_for('notes') }}"; 
         }
     });
   }); 

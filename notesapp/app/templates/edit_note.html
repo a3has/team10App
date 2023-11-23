@@ -44,10 +44,10 @@
             if (formModified) {
                 var confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
                 if (confirmLeave) {
-                    window.location.href = "{{ url_for('index') }}"; // Redirect to the '/' or '/index' route
+                    window.location.href = "{{ url_for('notes') }}"; // Redirect to the '/' or '/index' route
                 }
             } else {
-                window.location.href = "{{ url_for('index') }}"; // Redirect if no changes made
+                window.location.href = "{{ url_for('notes') }}"; // Redirect if no changes made
             }
         });
     });
