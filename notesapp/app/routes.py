@@ -20,7 +20,7 @@ def index():
     else:
         print(form.errors)
     posts = current_user.get_notes()
-    return render_template('index.html', title='Home Page', form=form, posts=posts)
+    return render_template('notes.html', title='Home Page', form=form, posts=posts)
 
 @app.route('/home')
 def home():
@@ -131,7 +131,7 @@ def logout():
 @app.route('/notes')
 def show_notes():
     notes = Note.query.all()
-    return render_template('notes.html', notes=notes)
+    return render_template('notes-nikko.html', notes=notes)
 
 @app.route('/create_note', methods=['GET', 'POST'])
 def create_note():
