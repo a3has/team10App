@@ -158,7 +158,7 @@ def edit_note(note_id):
         note.title = form.title.data
         note.body = form.note.data
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('notes'))
     elif request.method == 'GET':
         form.title.data = note.title
         form.note.data = note.body
@@ -172,4 +172,4 @@ def delete_note(note_id):
         abort(403)
     db.session.delete(note)
     db.session.commit()
-    return redirect(url_for('index'))
+    return redirect(url_for('notes'))
