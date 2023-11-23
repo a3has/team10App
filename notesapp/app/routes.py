@@ -11,13 +11,11 @@ from forms import RegistrationForm, AdvancedSearchForm, NoteForm2
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    # user = {'username': 'Aboudi'}
     form = NoteForm2()
     if form.validate_on_submit():
         note = NotePost(title=form.title.data, body=form.note.data, author=current_user)
         db.session.add(note)
         db.session.commit()
-        flash('Note Created')
         return redirect(url_for('index'))
     else:
         print(form.errors)
@@ -160,9 +158,18 @@ def edit_note(note_id):
         note.title = form.title.data
         note.body = form.note.data
         db.session.commit()
-        flash('Your note has been updated!', 'success')
         return redirect(url_for('index'))
     elif request.method == 'GET':
         form.title.data = note.title
         form.note.data = note.body
     return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
+
+@app.route('/delete_note/<int:note_id>', methods=['POST'])
+@login_required
+def delete_note(note_id):
+    note = NotePost.query.get_or_404(note_id)
+    if note.author != current_user:
+        abort(403)
+    db.session.delete(note)
+    db.session.commit()
+    return redirect(url_for('index'))

@@ -1,3 +1,70 @@
+.note-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-note {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #44c300;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    min-width: 20%;
+    min-height: 64px;
+}
+
+.create-note:hover {
+    background-color: #1b8800;
+}
+
+.note-form {
+    margin: 20px;
+    padding: 20px;
+    width: 400px;
+    min-height: 360px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.note-form input[type="text"], 
+.note-form textarea {
+    width: 100%; 
+    padding: 8px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.note-form input[type="submit"]:hover,
+.note-form button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+.note-form input[type="submit"], 
+.note-form button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 .sticky-note {
     background-color: #f4e442;
     padding: 10px;
@@ -15,17 +82,20 @@
 }
 
 .note-content {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     font-size: 1em;
+    font-weight: normal;
     overflow: auto;
+    line-height: 1.5;
 }
 
 .note-title {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5em;
     font-weight: bold;
-    margin: 0 0 10px; 
+    margin: 0;
+    padding: 8px 0px;
     word-wrap: break-word;
 }
 
@@ -39,17 +109,57 @@
 }
 
 .note-actions {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    display: flex;
+    justify-content: end;
 }
 
-.note-actions a {
-    margin-right: 4px;
+.edit-btn {
+    line-height: 2.7;
 }
 
-.note-actions a:last-child {
-    margin-right: 0;
+.edit-btn, .delete-btn {
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    vertical-align: middle;
+    color: white;
+    background-color: #007bff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    width: 48px;
+    height: 32px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #0056b3; 
+}
+
+.delete-btn {
+    background-color: #dc3545; 
+    font-size: 12px;
+    width: 56px;
+    height: 32px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; 
+}
+
+.note-form .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.note-form .cancel-btn:hover {
+    background-color: #c82333;
 }
 
 .clearfix {
