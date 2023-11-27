@@ -1,7 +1,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    
 <head>
     <meta charset="UTF-8">
     <title>Advanced Search</title>
@@ -9,9 +8,6 @@
 
 <body>
     <h1>Advanced Search</h1>
-    <a href="home">
-        <button class="home "  >Home</button>
-    </a>
     <form method="post" action="{{ url_for('advanced_search') }}">
         {{ form.csrf_token }}
         {{ form.hidden_tag() }}

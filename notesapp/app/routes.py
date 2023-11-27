@@ -108,7 +108,8 @@ def advanced_search():
 
     if form.validate_on_submit():
         # Build the query based on form input
-        query = Todo.query
+        query = Todo.query.filter_by(user_id=current_user.id)
+        #query = Todo.query
 
         if form.task_name.data:
             query = query.filter(Todo.name.ilike(f'%{form.task_name.data}%'))
@@ -130,8 +131,8 @@ def logout():
 
 @app.route('/notes-nikko')
 def show_notes():
-    notes = Note.query.all()
-    return render_template('notes-nikko.html', notes=notes)
+    notes = Note.query.filter_by(user_id=current_user.id).all()
+    return render_template('notes.html', notes=notes)
 
 @app.route('/create_note', methods=['GET', 'POST'])
 def create_note():
@@ -139,7 +140,7 @@ def create_note():
 
     if form.validate_on_submit():
         content = form.content.data
-        new_note = Note(content=content)
+        new_note = Note(content=content,user_id=current_user.id)
         db.session.add(new_note)
         db.session.commit()
         flash('Note added successfully!', 'success')

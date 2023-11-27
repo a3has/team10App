@@ -1,0 +1,19 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <ul>
+        {% for result in results %}
+            {% if result.task_type == 'task' %}
+                <li>{{ result.name }} - {% if result.done %}Completed{% else %}Not Completed{% endif %}</li>
+            {% elif result.task_type == 'note' %}
+                <li>{{ result.create_note }} - {% if result.is_complete %}Completed{% else %}Not Completed{% endif %}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
