@@ -1,32 +1,31 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, abort
 from app import app, db
 from forms import LoginForm, NoteForm
 from flask_login import current_user, login_user, logout_user, login_required
-from models import Note, User, Todo
+from models import Note, User, Todo, NotePost
 from werkzeug.urls import url_parse
-from forms import RegistrationForm, AdvancedSearchForm
+from forms import RegistrationForm, AdvancedSearchForm, NoteForm2
 
 
-@app.route('/')
-@app.route('/index')
-@login_required
-def index():
-    # user = {'username': 'Aboudi'}
-    posts = [
-        {
-            # 'author': {'username': 'John'},
-            'body': 'This is the post login landing page.'
-        },
-        {
-            # 'author': {'username': 'Susan'},
-            'body': 'Work in progress. Need to give names for each note instead of "username" says.'
-        }
-    ]
-    return render_template('index.html', title='Home Page', posts=posts)
-
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+
+@app.route('/notes', methods=['GET', 'POST'])
+@login_required
+def notes():
+    form = NoteForm2()
+    if form.validate_on_submit():
+        note = NotePost(title=form.title.data, body=form.note.data, author=current_user)
+        db.session.add(note)
+        db.session.commit()
+        return redirect(url_for('notes'))
+    else:
+        print(form.errors)
+    posts = current_user.get_notes()
+    return render_template('notes.html', title='Home Page', form=form, posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -130,10 +129,8 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-
-@app.route('/notes')
+@app.route('/notes-nikko')
 def show_notes():
-
     notes = Note.query.filter_by(user_id=current_user.id).all()
     return render_template('notes.html', notes=notes)
 
@@ -151,3 +148,29 @@ def create_note():
 
     return render_template('create_note.html', form=form)
 
+@app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
+@login_required
+def edit_note(note_id):
+    note = NotePost.query.get_or_404(note_id)
+    if note.author != current_user:
+        abort(403)
+    form = NoteForm2(obj=note)
+    if form.validate_on_submit():
+        note.title = form.title.data
+        note.body = form.note.data
+        db.session.commit()
+        return redirect(url_for('notes'))
+    elif request.method == 'GET':
+        form.title.data = note.title
+        form.note.data = note.body
+    return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
+
+@app.route('/delete_note/<int:note_id>', methods=['POST'])
+@login_required
+def delete_note(note_id):
+    note = NotePost.query.get_or_404(note_id)
+    if note.author != current_user:
+        abort(403)
+    db.session.delete(note)
+    db.session.commit()
+    return redirect(url_for('notes'))

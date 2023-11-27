@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.note-form {
+    margin: 20px;
+    padding: 20px;
+    width: 400px;
+    min-height: 360px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.note-form input[type="text"], 
+.note-form textarea {
+    width: 100%; 
+    padding: 8px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.note-form input[type="submit"]:hover,
+.note-form button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+.note-form .cancel {
+    background-color: rgb(255, 89, 89)
+}
+
+.note-form .cancel:hover {
+    background-color: rgb(202, 76, 76);
+}
+
+.note-form input[type="submit"], 
+.note-form button {
+    min-width: 72px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 4px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.btns {
+    display: flex;
+}

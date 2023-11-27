@@ -1,0 +1,201 @@
+.note-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-container a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 20px;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 36px;
+}
+
+.header-container button#back {
+    position: absolute;
+    top: 32px;
+    left: 16px;
+    z-index: 1000;
+    background-color: #dc3545; 
+    font-size: 12px;
+    width: 56px;
+    height: 32px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.create-note {
+    margin: 20px;
+    padding: 10px 20px;
+    background-color: #44c300;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    min-height: 64px;
+}
+
+.create-note:hover {
+    background-color: #1b8800;
+}
+
+.note-form {
+    margin: 20px;
+    padding: 20px;
+    width: 400px;
+    min-height: 360px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.note-form input[type="text"], 
+.note-form textarea {
+    width: 100%; 
+    padding: 8px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+}
+
+.note-form input[type="submit"]:hover,
+.note-form button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+.note-form input[type="submit"], 
+.note-form button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.sticky-note {
+    flex: 0 1 400px;
+    background-color: #e7e7e7;
+    padding: 10px;
+    padding-bottom: 60px;
+
+    min-height: 300px;
+    box-shadow: 2px 2px 4px #888888;
+    border-radius: 5px;
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+.note-content {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-size: 1em;
+    font-weight: normal;
+    overflow: auto;
+    line-height: 1.5;
+}
+
+.note-title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    padding: 8px 0px;
+    word-wrap: break-word;
+}
+
+.note-details {
+    position:absolute;
+    bottom: 2px;
+    left: 10px;
+    width: calc(100% - 20px);
+    font-size: 0.8em;
+    color: #555;
+}
+
+.note-actions {
+    display: flex;
+    justify-content: end;
+}
+
+.edit-btn {
+    line-height: 2.7;
+}
+
+.edit-btn, .delete-btn {
+    text-decoration: none;
+    text-align: center;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    vertical-align: middle;
+    color: white;
+    background-color: #007bff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+    width: 48px;
+    height: 32px;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    background-color: #0056b3; 
+}
+
+.delete-btn {
+    background-color: #dc3545; 
+    font-size: 12px;
+    width: 56px;
+    height: 32px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; 
+}
+
+.note-form .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.note-form .cancel-btn:hover {
+    background-color: #c82333;
+}
+
+.clearfix {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
