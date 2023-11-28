@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from models import User
+from flask_ckeditor import CKEditorField
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -30,7 +31,7 @@ class RegistrationForm(FlaskForm):
 
 class NoteForm2(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    note = TextAreaField('Content', validators=[DataRequired()])
+    note = CKEditorField('Content', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 class NoteForm(FlaskForm):

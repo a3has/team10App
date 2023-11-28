@@ -2,6 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='notes.css') }}">
 {% endblock %}
 
+
 {% block content %}
   <div class="note-container">
     <div class="header-container">
@@ -28,6 +29,8 @@
       {{ form.submit }}
       <button type="button" id="cancel-button" class="cancel-btn">Cancel</button>
     </form>
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='note') }}
   </div>
 
   <div class="clearfix">
@@ -40,7 +43,7 @@
         </form>
       </div>
       <p class="note-title">{{ note.title }}</p>
-      <p class="note-content">{{ note.body }}</p>
+      <p class="note-content">{{ note.body|safe }}</p>
       <p class="note-details">
         Note ID: {{ note.id }} <br>
         {{ note.timestamp.strftime('%Y/%m/%d %H:%M:%S') }}
