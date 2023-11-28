@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Calendar</title>
+  </head>
+  <body>
+    <h1>Upcoming Events from your Google Calendar:</h1>
+    <ul>
+      {% for result in results %}
+      <li>{{ result }}</li>
+      {% endfor %}
+    </ul>
+
+    <body>
+      <h1>Google Calendar</h1>
+      <iframe
+        src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=America%2FLos_Angeles&showTitle=0&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%230B8043"
+        style="border: solid 1px #777"
+        width="800"
+        height="600"
+        frameborder="0"
+        scrolling="no"
+      ></iframe>
+    </body>
+  </body>
+</html>
