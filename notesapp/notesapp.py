@@ -1,5 +1,5 @@
 from app import app, db
-from models import User, NotePost
+from models import User, Note
 import os
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
@@ -9,4 +9,4 @@ os.environ['WTF_CSRF_CHECK_DEFAULT'] = 'False'
 
 @app.shell_context_processor
 def make_shell_context():
-    return {'db': db, 'User': User, 'Note': NotePost}
+    return {'db': db, 'User': User, 'Note': Note}

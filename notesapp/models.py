@@ -15,10 +15,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    notes = db.relationship('NotePost', backref='author', lazy='dynamic')
-    name = db.Column(db.String(100), nullable=True) # used for Userprofile 
-    biography = db.Column(db.Text, nullable=True) #used for User Profile 
-    
+    notes = db.relationship('Note', backref='author', lazy='dynamic')
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -26,16 +24,17 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def get_notes(self):
-        return self.notes.order_by(NotePost.timestamp.desc()).all()
+        return self.notes.order_by(Note.timestamp.desc()).all()
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
 
-class NotePost(db.Model):
+class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50))
     body = db.Column(db.String(200))
+    color = db.Column(db.String(20))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
@@ -47,11 +46,3 @@ class Todo(db.Model):
     name=db.Column(db.String(100))
     done=db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-class Note(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(500), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    
-
-    

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from models import User
 from flask_ckeditor import CKEditorField
@@ -29,13 +29,26 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-class NoteForm2(FlaskForm):
+class NoteForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     note = CKEditorField('Content', validators=[DataRequired()])
+    color = SelectField(
+        'Background Color',
+        choices=[
+            ('#e7e7e7', 'Default'),      # Pastel gray
+            ('#daf0f7', 'Blue'),      # Pastel blue
+            ('#77dd77', 'Green'),     # Pastel green
+            ('#fdfd96', 'Yellow'),    # Pastel yellow
+            ('#ff6961', 'Red'),       # Pastel red
+            ('#b19cd9', 'Purple'),    # Pastel purple
+            ('#ffb347', 'Orange'),    # Pastel orange
+            ('#ffbfd3', 'Pink'),      # Pastel pink
+            ('#cfcfc4', 'Brown'),     # Pastel brown
+            ('#aec6cf', 'Cyan')       # Pastel cyan
+        ],
+        validators=[DataRequired()]
+    )
     submit = SubmitField('Submit')
-
-class NoteForm(FlaskForm):
-    content = TextAreaField('Content', validators=[DataRequired()])
     
 class AdvancedSearchForm(FlaskForm):
     task_name = StringField('Task Name')

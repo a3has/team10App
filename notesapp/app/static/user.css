@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-container h1 {
+    font-size: 2.5em;
+    margin: 0.67em 0;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.profile-info strong {
+    font-weight: bold;
+}
+
+.note-counter {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.back-btn:hover {
+    background-color: #5a6268;
+}

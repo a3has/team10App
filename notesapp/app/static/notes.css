@@ -97,7 +97,6 @@
 
 .sticky-note {
     flex: 0 1 400px;
-    background-color: #e7e7e7;
     padding: 10px;
     padding-bottom: 60px;
 
@@ -109,13 +108,17 @@
     overflow: hidden;
 }
 
-.note-content {
+.note-content, .note-form {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     font-size: 1em;
     font-weight: normal;
     overflow: auto;
     line-height: 1.5;
+}
+
+.color-menu {
+    margin-top: 8px;
 }
 
 .note-title {

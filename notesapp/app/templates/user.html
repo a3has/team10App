@@ -1,0 +1,29 @@
+{% block stylesheet %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='user.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <a class="back-btn" href="{{ url_for('home') }}">back</a>
+    <div class="header-container">
+        <h1>StickyNotes!</h1>
+    </div>
+    
+    <div class="profile-info">
+        <p><strong>Name:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+    
+    <div class="note-counter">
+        <p><strong>Total Notes:</strong> {{ note_count }}</p>
+    </div>
+    <button></button>
+</div>
+
+{% block scripts %}
+<script>
+
+</script>
+{% endblock %}
+
+{% endblock %}
