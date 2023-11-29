@@ -16,6 +16,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 import datetime
 import os
+from flask_sqlalchemy import SQLAlchemy
 
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
@@ -249,7 +250,13 @@ def edit_profile():
         }
 
         print("Updated user data:", user_data)
-
+        
+        current_user.name = user_data['name'] #name in Models for SQL
+        current_user.biography = user_data['biography'] # biograpghy in models for sql 
+        db.session.commit() # commit to data base
+        flash('Profile has updated!') #flash message if saved 
+        
+        return redirect(url_for('home')) # go back home 
     return render_template('userprofile.html')
 
 

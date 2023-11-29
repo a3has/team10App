@@ -25,6 +25,8 @@
             <button class="cancel" id="cancel-button">Cancel</button>    
         </div>
       </form>
+      {{ ckeditor.load() }}
+      {{ ckeditor.config(name='note') }}
 </div>
 
 <!-- I almost forgot you can include javascript in html files lol -->
