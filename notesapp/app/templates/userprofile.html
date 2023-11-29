@@ -4,9 +4,19 @@
 <head>
     <title>User Profile</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='userprofile.css')}}">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 </head>
 
 <body>
+
     <div class="button-container">
         <a href="{{ url_for('home') }}">
             <button class="home">Home</button>
