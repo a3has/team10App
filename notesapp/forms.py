@@ -54,3 +54,9 @@ class AdvancedSearchForm(FlaskForm):
     task_name = StringField('Task Name')
     is_complete = BooleanField('Completed')
     submit = SubmitField('Search')
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Name', validators=[DataRequired(), Length(min=2, max=64)])
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
+    biography = TextAreaField('Biography', validators=[Length(max=500)])
+    submit = SubmitField('Save Changes')
