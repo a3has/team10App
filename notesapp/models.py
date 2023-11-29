@@ -16,7 +16,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     notes = db.relationship('NotePost', backref='author', lazy='dynamic')
-
+    name = db.Column(db.String(100), nullable=True) # used for Userprofile 
+    biography = db.Column(db.Text, nullable=True) #used for User Profile 
+    
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
@@ -50,3 +52,6 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(500), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    
+
+    

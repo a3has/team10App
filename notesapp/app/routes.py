@@ -5,6 +5,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from models import Note, User, Todo, NotePost
 from werkzeug.urls import url_parse
 from forms import RegistrationForm, AdvancedSearchForm, NoteForm2
+from flask_sqlalchemy import SQLAlchemy
 
 
 
@@ -72,7 +73,13 @@ def edit_profile():
         }
 
         print("Updated user data:", user_data)
-
+        
+        current_user.name = user_data['name'] #name in Models for SQL
+        current_user.biography = user_data['biography'] # biograpghy in models for sql 
+        db.session.commit() # commit to data base
+        flash('Profile has updated!') #flash message if saved 
+        
+        return redirect(url_for('home')) # go back home 
     return render_template('userprofile.html')
 
 @app.route('/todo')
