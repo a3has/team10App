@@ -48,6 +48,17 @@
     color: white;
     margin-right: 60px;
 }
+
+
+.g-cal{
+    height: 50px;
+    width: 100px;
+    display: inline block;
+    background-color: rgb(221, 46, 15); /* Change 'green' to your preferred color */
+    color: white;
+    margin-right: 60px;
+}
+
 .AdvancedSearchForm{
     height: 50px;
     width: 100px;
