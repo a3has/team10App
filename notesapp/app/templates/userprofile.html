@@ -1,74 +1,43 @@
-
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Edit Profile</title>
+    <title>User Profile</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='userprofile.css')}}">
-    <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #9a0808;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-    </style>
-    <a href="home">
-        <button class="home">Home</button>
-    </a>
 </head>
 
 <body>
-    <div class="dropdown">
-        <button class="edit-profile-button">Edit Profile</button>
-        <div class="dropdown-content">
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name">
-                <br>
-
-                <label for="biography">Biography:</label>
-                <textarea id="biography" name="biography"></textarea>
-                <br>
-
-                <input type="submit" value="Save">
-            </form>
-        </div>
+    <div class="button-container">
+        <a href="{{ url_for('home') }}">
+            <button class="home">Home</button>
+        </a>
+        <button class="edit-profile-btn" onclick="toggleFormVisibility()">Edit Profile</button>
     </div>
 
-    
+    <form id="edit-profile-form" method="post" action="{{ url_for('edit_profile') }}">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ current_user.name }}">
+        <br>
+
+        <label for="biography">Biography:</label>
+        <textarea id="biography" name="biography">{{ current_user.biography }}</textarea>
+        <br>
+
+        <input type="submit" value="Save">
+    </form>
+
     <div id="display-section">
         <h3>Profile Information:</h3>
-        <p><strong>Name:</strong> <span id="display-name"></span></p>
-        <p><strong>Biography:</strong> <span id="display-biography"></span></p>
+        <p><strong>Name:</strong> {{ current_user.name }}</p>
+        <p><strong>Biography:</strong> {{ current_user.biography }}</p>
     </div>
 
     <script>
-       
-        document.querySelector('form').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-          
-            var name = document.getElementById('name').value;
-            var biography = document.getElementById('biography').value;
-
-            
-            document.getElementById('display-name').innerText = name;
-            document.getElementById('display-biography').innerText = biography;
-        });
+        function toggleFormVisibility() {
+            var form = document.getElementById('edit-profile-form');
+            form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+        }
     </script>
 </body>
-
 
 </html>

@@ -1,71 +1,89 @@
-/* userprofile.css */
-
 body {
-    font-family: Arial, sans-serif;
-    text-align: center; /* Center the text in the body */
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
 }
 
+.button-container {
+    display: flex;
+    padding: 20px;
+}
 
-.edit-profile-button {
-    background-color: #007bff;
+.home, .edit-profile-btn {
+    background-color: #3498db;
     color: white;
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
-}
-.home {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.dropdown-content {
+.home:hover, .edit-profile-btn:hover {
+    background-color: #2980b9;
+}
+
+#edit-profile-form {
     display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    max-width: 400px;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-form {
-    padding: 15px;
-}
-
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
 }
 
-input,
+input[type="text"],
 textarea {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 input[type="submit"] {
-    background-color: #007bff;
+    font-weight: bold;
+    background-color: #4caf50;
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 10px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
 }
 
 #display-section {
-    margin-top: 20px;
-    
+    text-align: center;
+    max-width: 400px;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#display-section h3 {
-    color: #c800ff;
+#display-section img {
+    max-width: 100%;
+    border-radius: 50%;
+    margin-bottom: 20px;
 }
