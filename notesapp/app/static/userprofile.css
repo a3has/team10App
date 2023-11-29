@@ -14,7 +14,9 @@ body {
     padding: 20px;
 }
 
-.home, .edit-profile-btn {
+
+
+.home, .edit-profile-btn { /*edit profile button and home */
     background-color: #3498db;
     color: white;
     padding: 10px 20px;

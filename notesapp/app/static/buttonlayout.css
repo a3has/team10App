@@ -1,69 +1,54 @@
-/* styles.css */
-
 .button-container {
-    text-align: left;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px; /* Optional: Add margin to separate the navigation bar from the heading */
+}
+
+.home,
+.todo,
+.profile,
+.add-note,
+.logout,
+.AdvancedSearchForm,
+.create_note {
+    height: 50px;
+    width: 100px;
+    display: inline-block;
 }
 
 .home {
-    height: 50px;
-    width: 100px;
-    display: inline block;
     background-color: rgb(88, 19, 75);
     color: white;
-    margin-right: 60px;
-    
 }
 
 .todo {
-    height: 50px;
-    width: 100px;
-    display: inline block;
     background-color: rgb(33, 23, 135);
     color: white;
-    margin-right: 60px;
 }
 
 .profile {
-    height: 50px;
-    width: 120px;
-    display: inline block;
+    width: 120px; /* Increased width for the profile button */
     background-color: rgb(137, 143, 26);
     color: black;
-    margin-right: 60px;
 }
 
 .add-note {
-    height: 50px;
-    width: 100px;
-    display: inline block;
     background-color: green; /* Change 'green' to your preferred color */
     color: white;
-    margin-right: 60px;
-}
-.logout{
-    height: 50px;
-    width: 100px;
-    display: inline block;
-    background-color: rgb(0, 113, 128); /* Change 'green' to your preferred color */
-    color: white;
-    margin-right: 60px;
-}
-.AdvancedSearchForm{
-    height: 50px;
-    width: 100px;
-    display: inline block;
-    background-color: rgb(0, 113, 128); /* Change 'green' to your preferred color */
-    color: white;
-    margin-right: 60px;
 }
 
+.logout {
+    background-color: rgb(0, 113, 128); /* Change to your preferred color */
+    color: white;
+}
 
-.create_note{
-    height: 50px;
-    width: 100px;
-    display: inline block;
+.AdvancedSearchForm {
+    background-color: rgb(0, 113, 128); /* Change to your preferred color */
+    color: white;
+}
+
+.create_note {
     background-color: rgb(128, 0, 45);
     color: white;
-    margin-right: 60px;
 }
-

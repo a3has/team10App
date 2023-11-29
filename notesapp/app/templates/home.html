@@ -1,20 +1,15 @@
-
 <!DOCTYPE html>
-
 <html>
 
 <head>
-    
     <link rel="stylesheet" href="{{ url_for('static', filename='buttonlayout.css') }}">
 </head>
 
 <body>
     <h2 style="text-align: center;">Sticky Notes</h2>
 
-    <div class="button-container">
-
-
-        <a href="profile"> 
+    <nav class="button-container">
+        <a href="profile">
             <button class="profile">User Profile</button>
         </a>
 
@@ -33,9 +28,7 @@
         <a href="logout"> <!-- Name of Routes ex. /logout-->
             <button class="logout">Logout</button>
         </a>
-
-
-    </div>
+    </nav>
 </body>
 
 </html>
