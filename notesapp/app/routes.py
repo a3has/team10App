@@ -4,7 +4,7 @@ from forms import LoginForm, NoteForm, RegistrationForm, AdvancedSearchForm
 from flask_login import current_user, login_user, logout_user, login_required
 from models import Note, User, Todo
 from werkzeug.urls import url_parse
-from forms import RegistrationForm, AdvancedSearchForm, NoteForm2
+from forms import RegistrationForm, AdvancedSearchForm, NoteForm
 import google.auth
 from googleapiclient.discovery import build
 import google.oauth2.credentials
