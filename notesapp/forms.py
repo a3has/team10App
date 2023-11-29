@@ -35,7 +35,8 @@ class NoteForm(FlaskForm):
     color = SelectField(
         'Background Color',
         choices=[
-            ('#aec6cf', 'Blue'),      # Pastel blue
+            ('#e7e7e7', 'Default'),      # Pastel gray
+            ('#daf0f7', 'Blue'),      # Pastel blue
             ('#77dd77', 'Green'),     # Pastel green
             ('#fdfd96', 'Yellow'),    # Pastel yellow
             ('#ff6961', 'Red'),       # Pastel red
@@ -43,7 +44,6 @@ class NoteForm(FlaskForm):
             ('#ffb347', 'Orange'),    # Pastel orange
             ('#ffbfd3', 'Pink'),      # Pastel pink
             ('#cfcfc4', 'Brown'),     # Pastel brown
-            ('#d3d3d3', 'Gray'),      # Pastel gray
             ('#aec6cf', 'Cyan')       # Pastel cyan
         ],
         validators=[DataRequired()]
