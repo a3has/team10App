@@ -82,6 +82,24 @@
     const noteForm = document.querySelector('.note-form');
     let formModified = false;
 
+    if (CKEDITOR.instances['note']) {
+      CKEDITOR.instances['note'].destroy();
+    }
+    CKEDITOR.replace('note', {
+      toolbar: [
+        { name: 'clipboard', items: ['Undo', 'Redo'] },
+        { name: 'styles', items: ['Format', 'FontSize'] },
+        { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
+        { name: 'links', items: ['Link', 'Unlink'] },
+        { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+        { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] }
+      ],
+      removeButtons: '',
+    });
+    CKEDITOR.instances['note'].on('change', function() {
+      formModified = true;
+    });
+
     backButton.addEventListener('click', () => {
       window.location.href = "{{ url_for('home') }}"
     })
@@ -91,11 +109,6 @@
       createNoteButton.style.display = 'none';
     });
 
-    cancelButton.addEventListener('click', function() {
-      noteForm.style.display = 'none';
-      createNoteButton.style.display = 'block';
-    });
-
     noteForm.addEventListener('change', function() {
         formModified = true;
     });
@@ -103,12 +116,20 @@
     cancelButton.addEventListener('click', function(event) {
         event.preventDefault(); 
         if (formModified) {
-            var confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
+            let confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
             if (confirmLeave) {
-                window.location.href = "{{ url_for('notes') }}";
+              noteForm.reset();
+              CKEDITOR.instances['note'].setData('');
+              noteForm.style.display = 'none';
+              createNoteButton.style.display = 'block';
+              formModified = false;
             }
         } else {
-            window.location.href = "{{ url_for('notes') }}"; 
+          noteForm.reset();
+          CKEDITOR.instances['note'].setData('');
+          noteForm.style.display = 'none';
+          createNoteButton.style.display = 'block';
+          formModified = false;
         }
     });
   }); 
