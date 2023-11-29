@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request, abort, session
 from app import app, db
-from forms import LoginForm, NoteForm, RegistrationForm, AdvancedSearchForm
+from forms import *
 from flask_login import current_user, login_user, logout_user, login_required
 from models import Note, User, Todo
 from werkzeug.urls import url_parse
@@ -242,31 +242,26 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-
-@app.route('/profile', methods=['GET', 'POST'])
-def edit_profile():
-    if request.method == 'POST':
-
-        user_data = {
-            'name': request.form.get('name'),
-            'biography': request.form.get('biography')
-        }
-
-        print("Updated user data:", user_data)
-        
-        current_user.name = user_data['name'] #name in Models for SQL
-        current_user.biography = user_data['biography'] # biograpghy in models for sql 
-        db.session.commit() # commit to data base
-        flash('Profile has updated!') #flash message if saved 
-        
-        return redirect(url_for('home')) # go back home 
-    return render_template('userprofile.html')
-
-@app.route('/user' , methods=['GET', 'POST'])
+@app.route('/user', methods=['GET', 'POST'])
 def profile():
+    form = EditProfileForm()
     user = User.query.get_or_404(current_user.id)
+
+    if form.validate_on_submit():
+        user.username = form.username.data
+        user.email = form.email.data
+        user.biography = form.biography.data
+        db.session.commit()
+        # Redirect to avoid post/redirect/get pattern
+        return redirect(url_for('profile'))
+
+    elif request.method == 'GET':
+        form.username.data = user.username
+        form.email.data = user.email
+        form.biography.data = user.biography
+
     note_count = user.notes.count()
-    return render_template('user.html', title='User Profile', user=user, note_count=note_count)
+    return render_template('user.html', title='User Profile', form=form, user=user, note_count=note_count)
 
 @app.route('/todo')
 def todo():

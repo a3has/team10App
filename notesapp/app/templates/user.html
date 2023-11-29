@@ -6,23 +6,75 @@
 <div class="container">
     <a class="back-btn" href="{{ url_for('home') }}">back</a>
     <div class="header-container">
-        <h1>StickyNotes!</h1>
+        <h1>{{ user.username }}'s Profile</h1>
+        <button class="edit">edit</button>
+        <div id="edit-form" style="display:none;">
+            <form action="" method="post" class="note-form" >
+                {{ form.hidden_tag() }}
+          
+                <div>
+                    {{ form.username.label(class='form-label') }} 
+                    {{ form.username }}
+                </div>
+
+                <div>
+                    {{ form.email.label(class='form-label') }} 
+                    {{ form.email }}
+                  </div>
+          
+                <div>
+                    {{ form.biography.label(class='form-label') }}
+                    {{ form.biography(cols=32, rows=12) }}
+                </div>
+                
+                <div class="btns">
+                    {{ form.submit }}
+                    <button type="button" class="cancel" id="cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
     </div>
-    
+       
     <div class="profile-info">
         <p><strong>Name:</strong> {{ user.username }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Biography:</strong> {{ user.biography or '' }}</p>
     </div>
     
     <div class="note-counter">
         <p><strong>Total Notes:</strong> {{ note_count }}</p>
     </div>
-    <button></button>
 </div>
 
 {% block scripts %}
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cancelButton = document.getElementById('cancel-button');
+        const noteForm = document.querySelector('.note-form');
+        const edit = document.querySelector('.edit');
+        const editForm = document.getElementById('edit-form');
+        let formModified = false;
 
+        edit.addEventListener('click', function() {
+            editForm.style.display = 'flex';
+          });
+
+        noteForm.addEventListener('change', function() {
+            formModified = true;
+        });
+    
+        cancelButton.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            if (formModified) {
+                var confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
+                if (confirmLeave) {
+                    document.getElementById('edit-form').style.display = 'none';
+                }
+            } else {
+                document.getElementById('edit-form').style.display = 'none';
+            }
+        });
+      }); 
 </script>
 {% endblock %}
 

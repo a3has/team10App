@@ -80,7 +80,7 @@
     const createNoteButton = document.getElementById('create-note');
     const cancelButton = document.getElementById('cancel-button');
     const noteForm = document.querySelector('.note-form');
-    const formModified = false;
+    let formModified = false;
 
     backButton.addEventListener('click', () => {
       window.location.href = "{{ url_for('home') }}"
