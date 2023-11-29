@@ -33,16 +33,34 @@
         </div>
       </form>
       {{ ckeditor.load() }}
-      {{ ckeditor.config(name='note', height='200px') }}
+      {{ ckeditor.config(height='200px') }}
 </div>
 
 <!-- I almost forgot you can include javascript in html files lol -->
 {% block scripts %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var formModified = false;
-        var form = document.querySelector('.sticky-note-edit form');
-        var cancelButton = document.getElementById('cancel-button');
+        let formModified = false;
+        const form = document.querySelector('.sticky-note-edit form');
+        const cancelButton = document.getElementById('cancel-button');
+
+        if (CKEDITOR.instances['note']) {
+            CKEDITOR.instances['note'].destroy();
+        }
+        CKEDITOR.replace('note', {
+            toolbar: [
+                { name: 'clipboard', items: ['Undo', 'Redo'] },
+                { name: 'styles', items: ['Format', 'FontSize'] },
+                { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'] },
+                { name: 'links', items: ['Link', 'Unlink'] },
+                { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'SpecialChar'] },
+                { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] }
+            ],
+            removeButtons: '',
+        });
+        CKEDITOR.instances['note'].on('change', function() {
+          formModified = true;
+        });
 
         form.addEventListener('change', function() {
             formModified = true;
@@ -51,7 +69,7 @@
         cancelButton.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the form from submitting
             if (formModified) {
-                var confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
+                let confirmLeave = confirm('You have unsaved changes. Are you sure you want to discard them?');
                 if (confirmLeave) {
                     window.location.href = "{{ url_for('notes') }}"; // Redirect to the '/' or '/index' route
                 }
