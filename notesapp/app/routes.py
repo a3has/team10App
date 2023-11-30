@@ -23,10 +23,12 @@ import google_auth_oauthlib.flow
 
 with app.app_context():
 
+    # secret file needed for api access. pls dont leak
     CLIENT_SECRETS_FILE = "app/client_secret.json"
+    # calendar will only read non sensitive info
     SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
-    def credentials_to_dict(credentials):
+    def credentials_to_dict(credentials):  # each user is listed into a dict
         return {'token': credentials.token,
                 'refresh_token': credentials.refresh_token,
                 'token_uri': credentials.token_uri,
@@ -35,11 +37,13 @@ with app.app_context():
                 'scopes': credentials.scopes}
 
 
+# test login to see if its working, prints test table given by google documentation
 @app.route('/testlogin')
 def index():
     return print_index_table()
 
 
+# sends you to the google authorization login screen
 @app.route('/Googlelogin')
 def Googlelogin():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
@@ -52,6 +56,7 @@ def Googlelogin():
     return redirect(authorization_url)
 
 
+# after authentication from google flow, this sends you back the credidentials to /calendar
 @app.route('/oauth2callback')
 def oauth2callback():
 
@@ -76,7 +81,7 @@ def oauth2callback():
     # return redirect('/testlogin')
 
 
-@app.route('/revoke')
+@app.route('/revoke')  # logs your google account out after leaving pages
 def revoke():
     if 'credentials' not in session:
         return ('You need to <a href="/authorize">authorize</a> before ' +
@@ -96,7 +101,7 @@ def revoke():
         return ('An error occurred.' + print_index_table())
 
 
-def print_index_table():
+def print_index_table():  # the index table used for testing
     return ('<table>' +
             '<tr><td><a href="/test">Test an API request</a></td>' +
             '<td>Submit an API request and see a formatted JSON response. ' +
@@ -118,7 +123,7 @@ def print_index_table():
             '</td></tr></table>')
 
 
-@app.route('/clear')
+@app.route('/clear')  # deletes all google creds on demand
 def clear_credentials():
     if 'credentials' in session:
         del session['credentials']
@@ -126,6 +131,7 @@ def clear_credentials():
             print_index_table())
 
 
+# imports your events from your personal google calendar.
 @app.route('/calendar')
 def calendar():
     creds = None
@@ -168,7 +174,7 @@ def calendar():
             print("No upcoming events found.")
             return
 
-        # Prints the start and name of the next 10 events
+        # Prints the start and name of the next events. all info printed is not sensitive.
         formatted_events = []
         for event in events:
             start = event["start"].get("dateTime", event["start"].get("date"))
@@ -177,14 +183,17 @@ def calendar():
     except HttpError as error:
         print(f"An error occurred: {error}")
 
+    # returns the display function
     return render_template('calendar.html', results=formatted_events)
 
 
+# simple calendar embed without needing to login.
 @app.route('/calendarBasic', methods=['GET', 'POST'])
 def Gcal():
     return render_template('calendarBasic.html')
 
 
+# send to login screen with all login features.
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -203,6 +212,7 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
+# also sends you to home if logged in.
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home')
 @login_required
@@ -215,8 +225,8 @@ def notes():
     form = NoteForm()
     if form.validate_on_submit():
         note = Note(
-            title=form.title.data, 
-            body=form.note.data, 
+            title=form.title.data,
+            body=form.note.data,
             color=form.color.data,
             author=current_user)
         db.session.add(note)
@@ -228,7 +238,7 @@ def notes():
     return render_template('notes.html', title='Home Page', form=form, posts=posts)
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])  # registers new user.
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('login'))
@@ -241,6 +251,7 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route('/user', methods=['GET', 'POST'])
 def profile():
@@ -262,6 +273,7 @@ def profile():
 
     note_count = user.notes.count()
     return render_template('user.html', title='User Profile', form=form, user=user, note_count=note_count)
+
 
 @app.route('/todo')
 def todo():
@@ -319,10 +331,11 @@ def advanced_search():
     return render_template('adv_search.html', form=form)
 
 
-@app.route('/logout')
+@app.route('/logout')  # logs out the user.
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
 
 @app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
 @login_required

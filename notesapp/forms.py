@@ -4,14 +4,16 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from models import User
 from flask_ckeditor import CKEditorField
 
+
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    username = StringField('Username', validators=[
+                           DataRequired()])  # login boxes
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
 
-class RegistrationForm(FlaskForm):
+class RegistrationForm(FlaskForm):  # sign up forms
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -19,15 +21,16 @@ class RegistrationForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
-    def validate_username(self, username):
+    def validate_username(self, username):  # make sure username isnt taken
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email):
+    def validate_email(self, email):  # same with email
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
 
 class NoteForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
@@ -49,14 +52,18 @@ class NoteForm(FlaskForm):
         validators=[DataRequired()]
     )
     submit = SubmitField('Submit')
-    
+
+
 class AdvancedSearchForm(FlaskForm):
     task_name = StringField('Task Name')
     is_complete = BooleanField('Completed')
     submit = SubmitField('Search')
 
+
 class EditProfileForm(FlaskForm):
-    username = StringField('Name', validators=[DataRequired(), Length(min=2, max=64)])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
+    username = StringField('Name', validators=[
+                           DataRequired(), Length(min=2, max=64)])
+    email = StringField('Email', validators=[
+                        DataRequired(), Email(), Length(max=120)])
     biography = TextAreaField('Biography', validators=[Length(max=500)])
     submit = SubmitField('Save Changes')
