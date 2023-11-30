@@ -100,6 +100,8 @@ Find a list of the packages we used for this application [here](https://github.c
     - Search (Sammy)
     - Homepage (Sammy)
     - Search (Sammy)
+    - API Integration (Abdulkader)
+    - Login, Sign up, PW Hashing (Abdulkader)
 
 ## PullRequest
 - [SammyPull](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
@@ -109,3 +111,7 @@ Find a list of the packages we used for this application [here](https://github.c
 - [SammyPull2](https://github.com/a3has/team10App/commit/6df975e8fcc909d60aea1e8e59f1ec4e3ace9069)
 
 - [SammyPull3](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
+
+- [AbdulPull1](https://github.com/a3has/team10App/pull/19)
+  
+- [AbdulPull2](https://github.com/a3has/team10App/pull/39)
