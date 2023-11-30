@@ -3,11 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from flask_ckeditor import CKEditor
+from flask_ckeditor import CKEditor #Initialization of flask-ckeditor
 import os
 
 app = Flask(__name__)
-ckeditor = CKEditor(app)
+ckeditor = CKEditor(app) #Also initializes flask-ckeditor
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app.config.from_mapping(

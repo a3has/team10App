@@ -30,7 +30,7 @@ class User(UserMixin, db.Model):
         return '<User {}>'.format(self.username)
 
 
-class Note(db.Model):
+class Note(db.Model): # Database model for notes
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50))
     body = db.Column(db.String(200))
