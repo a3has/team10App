@@ -7,26 +7,35 @@
     <form action="" method="post" class="note-form">
         {{ form.hidden_tag() }}
         <div>
-          {{ form.title.label }} 
+          {{ form.title.label(class='label') }} 
           {{ form.title(class='form-control') }}
           {% for error in form.title.errors %}
             <span style="color: red;" class="error">[{{ error }}]</span>
           {% endfor %}
         </div>
         <div>
-          {{ form.note.label }}
-          {{ form.note(cols=12, rows=6) }}
+          {{ form.note.label(class='label') }}
+          <div class="ckeditor">{{ form.note(cols=12, rows=6) }}</div>
           {% for error in form.note.errors %}
           <span style="color: red;">[{{ error }}]</span>
           {% endfor %}
         </div>
         <div>
-            {{ form.color.label }}
+            {{ form.color.label(class='label') }}
             {{ form.color }}
             {% for error in form.color.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
-          </div>
+        </div>
+        <div>
+            <div class="tags">
+              {{ form.tags.label(class='tag-label') }}
+              {{ form.tags }}
+            </div>
+            {% for error in form.tags.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
         <div class="btns">
             <div>{{ form.submit }}</div>
             <button class="cancel" id="cancel-button">Cancel</button>    

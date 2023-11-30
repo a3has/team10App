@@ -59,7 +59,17 @@ body {
     cursor: pointer;
 }
 
+.tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
 .btns {
     display: flex;
+}
+
+.ckeditor {
+    margin-top: 8px;
+    margin-bottom: 8px;
 }

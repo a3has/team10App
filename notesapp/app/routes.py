@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request, abort, ses
 from app import app, db
 from forms import *
 from flask_login import current_user, login_user, logout_user, login_required
-from models import Note, User, Todo
+from models import *
 from werkzeug.urls import url_parse
 from forms import RegistrationForm, AdvancedSearchForm, NoteForm
 import google.auth
@@ -23,10 +23,12 @@ import google_auth_oauthlib.flow
 
 with app.app_context():
 
+    # secret file needed for api access. pls dont leak
     CLIENT_SECRETS_FILE = "app/client_secret.json"
+    # calendar will only read non sensitive info
     SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
-    def credentials_to_dict(credentials):
+    def credentials_to_dict(credentials):  # each user is listed into a dict
         return {'token': credentials.token,
                 'refresh_token': credentials.refresh_token,
                 'token_uri': credentials.token_uri,
@@ -35,11 +37,13 @@ with app.app_context():
                 'scopes': credentials.scopes}
 
 
+# test login to see if its working, prints test table given by google documentation
 @app.route('/testlogin')
 def index():
     return print_index_table()
 
 
+# sends you to the google authorization login screen
 @app.route('/Googlelogin')
 def Googlelogin():
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
@@ -52,6 +56,7 @@ def Googlelogin():
     return redirect(authorization_url)
 
 
+# after authentication from google flow, this sends you back the credidentials to /calendar
 @app.route('/oauth2callback')
 def oauth2callback():
 
@@ -76,7 +81,7 @@ def oauth2callback():
     # return redirect('/testlogin')
 
 
-@app.route('/revoke')
+@app.route('/revoke')  # logs your google account out after leaving pages
 def revoke():
     if 'credentials' not in session:
         return ('You need to <a href="/authorize">authorize</a> before ' +
@@ -96,7 +101,7 @@ def revoke():
         return ('An error occurred.' + print_index_table())
 
 
-def print_index_table():
+def print_index_table():  # the index table used for testing
     return ('<table>' +
             '<tr><td><a href="/test">Test an API request</a></td>' +
             '<td>Submit an API request and see a formatted JSON response. ' +
@@ -118,7 +123,7 @@ def print_index_table():
             '</td></tr></table>')
 
 
-@app.route('/clear')
+@app.route('/clear')  # deletes all google creds on demand
 def clear_credentials():
     if 'credentials' in session:
         del session['credentials']
@@ -126,6 +131,7 @@ def clear_credentials():
             print_index_table())
 
 
+# imports your events from your personal google calendar.
 @app.route('/calendar')
 def calendar():
     creds = None
@@ -168,7 +174,7 @@ def calendar():
             print("No upcoming events found.")
             return
 
-        # Prints the start and name of the next 10 events
+        # Prints the start and name of the next events. all info printed is not sensitive.
         formatted_events = []
         for event in events:
             start = event["start"].get("dateTime", event["start"].get("date"))
@@ -177,14 +183,17 @@ def calendar():
     except HttpError as error:
         print(f"An error occurred: {error}")
 
+    # returns the display function
     return render_template('calendar.html', results=formatted_events)
 
 
+# simple calendar embed without needing to login.
 @app.route('/calendarBasic', methods=['GET', 'POST'])
 def Gcal():
     return render_template('calendarBasic.html')
 
 
+# send to login screen with all login features.
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -203,22 +212,29 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
+# also sends you to home if logged in.
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home')
 @login_required
 def home():
-    return render_template('home.html')
+    return render_template('home.html') # redirect to home page 
 
-
+# route for viewing notes. Crud operations accessible from here
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
     form = NoteForm()
     if form.validate_on_submit():
         note = Note(
-            title=form.title.data, 
-            body=form.note.data, 
+            title=form.title.data,
+            body=form.note.data,
             color=form.color.data,
             author=current_user)
+        for tag_name in form.tags.data.split(','):
+            tag = Tag.query.filter_by(name=tag_name.strip()).first()
+            if not tag:
+                tag = Tag(name=tag_name.strip())
+                db.session.add(tag)
+            note.tags.append(tag)
         db.session.add(note)
         db.session.commit()
         return redirect(url_for('notes'))
@@ -228,7 +244,7 @@ def notes():
     return render_template('notes.html', title='Home Page', form=form, posts=posts)
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register', methods=['GET', 'POST'])  # registers new user.
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('login'))
@@ -242,74 +258,75 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/user', methods=['GET', 'POST'])
-def profile():
-    form = EditProfileForm()
-    user = User.query.get_or_404(current_user.id)
+@app.route('/user', methods=['GET', 'POST']) # handle get and post request 
+def profile(): # profile page 
+    form = EditProfileForm() # created form using edit profile form  
+    user = User.query.get_or_404(current_user.id) # get user from data base 
 
-    if form.validate_on_submit():
+    if form.validate_on_submit(): # if validated update user information 
         user.username = form.username.data
         user.email = form.email.data
         user.biography = form.biography.data
-        db.session.commit()
+        db.session.commit() # save changes 
         # Redirect to avoid post/redirect/get pattern
         return redirect(url_for('profile'))
 
-    elif request.method == 'GET':
+    elif request.method == 'GET': # if request is to get then udpdate information 
         form.username.data = user.username
         form.email.data = user.email
         form.biography.data = user.biography
 
-    note_count = user.notes.count()
+    note_count = user.notes.count() # count the number of notes for the user 
     return render_template('user.html', title='User Profile', form=form, user=user, note_count=note_count)
+
 
 @app.route('/todo')
 def todo():
-    todo_list = Todo.query.filter_by(user_id=current_user.id).all()
+    todo_list = Todo.query.filter_by(user_id=current_user.id).all() # create todo for unique users 
     # todo_list = current_user.Todo.all()
     # todo_list=Todo.query.all()
-    return render_template('todo.html', todo_list=todo_list)
+    return render_template('todo.html', todo_list=todo_list) # user redered hmtl template 
 
 
 @app.route('/add', methods=['POST'])
 def add():
-    name = request.form.get("name")
-    new_task = Todo(name=name, done=False, user_id=current_user.id)
-    db.session.add(new_task)
-    db.session.commit()
-    return redirect(url_for("todo"))
+    name = request.form.get("name") # gt name from form
+    new_task = Todo(name=name, done=False, user_id=current_user.id) # new task for unique users 
+    db.session.add(new_task) # add task to db 
+    db.session.commit() # commmit to db 
+    return redirect(url_for("todo")) # rediect 
 
 
 @app.route('/update/<int:todo_id>')
 def update(todo_id):
-    todo = Todo.query.get(todo_id)
-    todo.done = not todo.done
-    db.session.commit()
+    todo = Todo.query.get(todo_id) # get todo id from data base 
+    todo.done = not todo.done # toggle wheter task is done or not 
+    db.session.commit() # commit to db 
     return redirect(url_for("todo"))
 
 
 @app.route('/delete/<int:todo_id>')
 def delete(todo_id):
-    todo = Todo.query.get(todo_id)
-    db.session.delete(todo)
-    db.session.commit()
-    return redirect(url_for("todo"))
+    todo = Todo.query.get(todo_id) # get todo id from data base 
+    db.session.delete(todo) # delete the task from db 
+    db.session.commit() # commit 
+    return redirect(url_for("todo")) #redirect 
 
 
 @app.route('/advanced_searching', methods=['GET', 'POST'])
 def advanced_search():
-    form = AdvancedSearchForm()
+    form = AdvancedSearchForm() # create instance using advanced searh 
 
-    if form.validate_on_submit():
-        # Build the query based on form input
+    if form.validate_on_submit(): # make sure it is valid 
+        # Build the query based on form input user id unique 
         query = Todo.query.filter_by(user_id=current_user.id)
         # query = Todo.query
 
-        if form.task_name.data:
+        if form.task_name.data: # check if task is empty and filter by task name
             query = query.filter(Todo.name.ilike(f'%{form.task_name.data}%'))
 
-        if form.is_complete.data is not None:
-            query = query.filter(Todo.done == form.is_complete.data)
+        if form.is_complete.data is not None: # check if not none 
+            query = query.filter(Todo.done == form.is_complete.data) # filter task by cmpletion
 
         # Execute the query for all
         results = query.all()
@@ -319,11 +336,12 @@ def advanced_search():
     return render_template('adv_search.html', form=form)
 
 
-@app.route('/logout')
+@app.route('/logout')  # logs out the user.
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# route for editing existing notes on the /notes route
 @app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
 @login_required
 def edit_note(note_id):
@@ -334,14 +352,22 @@ def edit_note(note_id):
     if form.validate_on_submit():
         note.title = form.title.data
         note.body = form.note.data
+        note.tags = []
+        for tag_name in form.tags.data.split(','):  # Assuming tags are comma-separated
+            tag = Tag.query.filter_by(name=tag_name.strip()).first()
+            if not tag:
+                tag = Tag(name=tag_name.strip())
+                db.session.add(tag)
+            note.tags.append(tag)
         db.session.commit()
         return redirect(url_for('notes'))
     elif request.method == 'GET':
         form.title.data = note.title
         form.note.data = note.body
+        form.tags.data = ', '.join([tag.name for tag in note.tags])  # Convert tags to a comma-separated string
     return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
 
-
+# route for deleting existing notes on the /notes route
 @app.route('/delete_note/<int:note_id>', methods=['POST'])
 @login_required
 def delete_note(note_id):
