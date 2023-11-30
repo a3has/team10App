@@ -106,6 +106,9 @@ Find a list of the packages we used for this application [here](https://github.c
 - Note creation
 - Note editing
 - Note deletion
+### Abdulkader
+- Google Calendar API Integration 
+- Login, Sign up, Password Hashing
 
 ## PullRequest
 ### Sammy
@@ -120,3 +123,7 @@ Find a list of the packages we used for this application [here](https://github.c
 ### Jonathan
 - [PR 1 - Create Note, Edit Note, Delete Note, Notes page](https://github.com/a3has/team10App/commit/78be911b44b0fb25e1075a055e192f6db0a1cfbd)
 
+### Abdulkader
+- [PR 1](https://github.com/a3has/team10App/pull/19)
+  
+- [PR 2](https://github.com/a3has/team10App/pull/39)
