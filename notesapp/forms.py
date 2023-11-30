@@ -4,14 +4,14 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from models import User
 from flask_ckeditor import CKEditorField
 
-class LoginForm(FlaskForm):
+class LoginForm(FlaskForm): # create fileds of login infomation 
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
 
-class RegistrationForm(FlaskForm):
+class RegistrationForm(FlaskForm): # set fields for user name, passsword and email 
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -19,17 +19,17 @@ class RegistrationForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
-    def validate_username(self, username):
+    def validate_username(self, username): # check if valid 
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email):
+    def validate_email(self, email): #c heck if valid 
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-class NoteForm(FlaskForm):
+class NoteForm(FlaskForm): # create firleds and set color coices for background 
     title = StringField('Title', validators=[DataRequired()])
     note = CKEditorField('Content', validators=[DataRequired()])
     color = SelectField(
