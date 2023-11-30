@@ -4,7 +4,7 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from models import User
 from flask_ckeditor import CKEditorField
 
-class LoginForm(FlaskForm): # create fileds of login infomation 
+class LoginForm(FlaskForm): # create fields for login infomation 
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
@@ -19,12 +19,12 @@ class RegistrationForm(FlaskForm): # set fields for user name, passsword and ema
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
-    def validate_username(self, username): # check if valid 
+    def validate_username(self, username):  # make sure username isnt taken
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email): #c heck if valid 
+    def validate_email(self, email):  # same with email
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
@@ -60,7 +60,9 @@ class AdvancedSearchForm(FlaskForm): # set varibles like task name sumb and comp
 
 # form for editing user profile
 class EditProfileForm(FlaskForm):
-    username = StringField('Name', validators=[DataRequired(), Length(min=2, max=64)])
-    email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
+    username = StringField('Name', validators=[
+                           DataRequired(), Length(min=2, max=64)])
+    email = StringField('Email', validators=[
+                        DataRequired(), Email(), Length(max=120)])
     biography = TextAreaField('Biography', validators=[Length(max=500)])
     submit = SubmitField('Save Changes')
