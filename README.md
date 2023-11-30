@@ -4,9 +4,9 @@
 - [Introduction](#introduction)
 - [Collaborators](#collaborators)
 - [Project Setup](#project-setup)
+- [How To Use](#how-to-use)
 - [Packages](#packages)
 - [Requirements](#requirements)
-- [How To Use](#how-to-use)
 - [Pull Request](#pullrequest)
 
 ## Introduction
