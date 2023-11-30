@@ -216,15 +216,16 @@ Sketch for folder creation here
 
 - **Pre-condition:**
   1. User must be logged in
-  2. The user must be in an existing note.
+  2. The user must be creating or editing a note.
 - **Trigger:**
   1. The user selects one of the supported text-formatting options when typing in a textbox or highlighting selected text.
 - **Primary Sequence:**
-  1. The user navigates to the folder where the note they want to edit is contained
-  2. The user selects the note that they want to edit.
-  3. The system opens the note and displays the contents to the user.
-  4. The user clicks on a textbox within the note
-  5. The system allows the user to type in the note and shows options to bold, italicize, or underline the text the user is inputting.
+  1. The user navigates to the folder where the note they want to create or edit the note.
+  2. The user selects creates or edits a note.
+  3. The system shows a text box that gives options such as underline, bold, italicize.
+  4. The user puts content into the note or edits the notes contents including the supported text formatting.
+  5. The user clicks submit.
+  6. The system displays the note with all user inputted text formatting included.
 
 - **Primary Post-conditions:**
   - Users can select one of the options and it will change the upcoming text or highlighted text to be bolded, italicized, or underlined

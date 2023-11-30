@@ -102,6 +102,9 @@ Find a list of the packages we used for this application [here](https://github.c
     - Search (Sammy)
     - API Integration (Abdulkader)
     - Login, Sign up, PW Hashing (Abdulkader)
+    - Create note (Nikko)
+    - Text formatting via Rich text editor (Nikko)
+    - Image Support via rich text editor (Nikko)
 
 ## PullRequest
 - [SammyPull](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
@@ -115,3 +118,9 @@ Find a list of the packages we used for this application [here](https://github.c
 - [AbdulPull1](https://github.com/a3has/team10App/pull/19)
   
 - [AbdulPull2](https://github.com/a3has/team10App/pull/39)
+
+- [Nikkopull](https://github.com/a3has/team10App/pull/23)
+
+- [Nikkopull2](https://github.com/a3has/team10App/pull/33)
+
+- [Nikkopull3](https://github.com/a3has/team10App/pull/34)
