@@ -96,16 +96,23 @@ flask run
 Find a list of the packages we used for this application [here](https://github.com/a3has/team10App/blob/milestone2/notesapp/requirements.txt).
 
 ## Requirements 
-    - To Do Checklist (Sammy)
-    - Search (Sammy)
-    - Homepage (Sammy)
-    - Search (Sammy)
+### Sammy
+- To Do Checklist 
+- Search 
+- Homepage 
+- Search 
+### Jonathan
+- Notes view
+- Note creation
+- Note editing
+- Note deletion
 
 ## PullRequest
-- [SammyPull](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
+### Sammy
+- [PR 1](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
 
-- [SammyPull1](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
+- [PR 2](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
 
-- [SammyPull2](https://github.com/a3has/team10App/commit/6df975e8fcc909d60aea1e8e59f1ec4e3ace9069)
+- [PR 3](https://github.com/a3has/team10App/commit/6df975e8fcc909d60aea1e8e59f1ec4e3ace9069)
 
-- [SammyPull3](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
+- [PR 4](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
