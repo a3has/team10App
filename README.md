@@ -95,7 +95,6 @@ flask run
 ## Packages
 Find a list of the packages we used for this application [here](https://github.com/a3has/team10App/blob/milestone2/notesapp/requirements.txt).
 
-## Requirements 
 ### Sammy
 - To Do Checklist 
 - Search 
@@ -109,6 +108,9 @@ Find a list of the packages we used for this application [here](https://github.c
 ### Abdulkader
 - Google Calendar API Integration 
 - Login, Sign up, Password Hashing
+### Nikko
+- Text formatting via Rich text editor 
+- Image Support via rich text editor 
 
 ## PullRequest
 ### Sammy
@@ -125,5 +127,9 @@ Find a list of the packages we used for this application [here](https://github.c
 
 ### Abdulkader
 - [PR 1](https://github.com/a3has/team10App/pull/19)
-  
 - [PR 2](https://github.com/a3has/team10App/pull/39)
+
+### Nikko
+- [PR 1](https://github.com/a3has/team10App/pull/23)
+- [PR 2](https://github.com/a3has/team10App/pull/33)
+- [PR 3](https://github.com/a3has/team10App/pull/34)
