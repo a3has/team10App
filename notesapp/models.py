@@ -46,3 +46,14 @@ class Todo(db.Model):
     name=db.Column(db.String(100))
     done=db.Column(db.Boolean)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+note_tags = db.Table('note_tags',
+    db.Column('note_id', db.Integer, db.ForeignKey('note.id'), primary_key=True),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True)
+)
+
+class Tag(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), index=True, unique=True)
+    notes = db.relationship('Note', secondary=note_tags, lazy='subquery',
+                            backref=db.backref('tags', lazy='dynamic'))

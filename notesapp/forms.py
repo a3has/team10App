@@ -34,7 +34,7 @@ class NoteForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()]) # title field
     note = CKEditorField('Content', validators=[DataRequired()]) # content field
     color = SelectField(
-        'Background Color',
+        'Color',
         choices=[                     # note background color
             ('#e7e7e7', 'Default'),   # Pastel gray
             ('#daf0f7', 'Blue'),      # Pastel blue
@@ -49,6 +49,8 @@ class NoteForm(FlaskForm):
         ],
         validators=[DataRequired()]
     )
+    # field for note tags
+    tags = StringField('Tags', description='Separate tags with commas', render_kw={"placeholder": "Enter tags separated by commas"})
     submit = SubmitField('Submit')   # submit button
     
 class AdvancedSearchForm(FlaskForm):
