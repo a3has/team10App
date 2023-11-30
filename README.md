@@ -88,6 +88,13 @@ flask run
 4. Edit which fields you wish to change, and click submit.
 5. Your web page should now show the new profile changes that you set.
 
+### Calendar
+1. From home, click on calendar.
+2. You will be redirected to the Google login page where you can safely login into your google account. If not automatically redirected, click link from console. 
+3. After authentication, return back to calenda.
+4. Your most recent events from your personal Google Calendar will be imported.
+5. A generic Google Calendar window view is also shown. 
+
 ### Logout
 1. From the /home route, click the `Logout` button. 
 2. You will then be logged out, and redirected back to the /login route.
