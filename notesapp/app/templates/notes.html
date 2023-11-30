@@ -56,8 +56,7 @@
       <p class="note-title">{{ note.title }}</p>
       <p class="note-content">{{ note.body|safe }}</p>
       <p class="note-details">
-        Note ID: {{ note.id }} <br>
-        {{ note.timestamp.strftime('%Y/%m/%d %H:%M:%S') }}
+        Last Edited: {{ note.timestamp.strftime('%B %d, %Y') }}
       </p>
     </div>
     {% endfor %} 
@@ -65,7 +64,6 @@
   
 {% block scripts %}
 <script>
-
   CKEDITOR.replace('note', {
     toolbar: [
         { name: 'clipboard', items: ['Undo', 'Redo'] },
