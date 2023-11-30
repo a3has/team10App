@@ -4,9 +4,9 @@
 - [Introduction](#introduction)
 - [Collaborators](#collaborators)
 - [Project Setup](#project-setup)
+- [How To Use](#how-to-use)
 - [Packages](#packages)
 - [Requirements](#requirements)
-- [How To Use](#how-to-use)
 - [Pull Request](#pullrequest)
 
 ## Introduction
@@ -96,22 +96,34 @@ flask run
 Find a list of the packages we used for this application [here](https://github.com/a3has/team10App/blob/milestone2/notesapp/requirements.txt).
 
 ## Requirements 
-    - To Do Checklist (Sammy)
-    - Search (Sammy)
-    - Homepage (Sammy)
-    - Search (Sammy)
-    - API Integration (Abdulkader)
-    - Login, Sign up, PW Hashing (Abdulkader)
+### Sammy
+- To Do Checklist 
+- Search 
+- Homepage 
+- Search 
+### Jonathan
+- Notes view
+- Note creation
+- Note editing
+- Note deletion
+### Abdulkader
+- Google Calendar API Integration 
+- Login, Sign up, Password Hashing
 
 ## PullRequest
-- [SammyPull](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
+### Sammy
+- [PR 1](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
 
-- [SammyPull1](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
+- [PR 2](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
 
-- [SammyPull2](https://github.com/a3has/team10App/commit/6df975e8fcc909d60aea1e8e59f1ec4e3ace9069)
+- [PR 3](https://github.com/a3has/team10App/commit/6df975e8fcc909d60aea1e8e59f1ec4e3ace9069)
 
-- [SammyPull3](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
+- [PR 4](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
 
-- [AbdulPull1](https://github.com/a3has/team10App/pull/19)
+### Jonathan
+- [PR 1 - Create Note, Edit Note, Delete Note, Notes page](https://github.com/a3has/team10App/commit/78be911b44b0fb25e1075a055e192f6db0a1cfbd)
+
+### Abdulkader
+- [PR 1](https://github.com/a3has/team10App/pull/19)
   
-- [AbdulPull2](https://github.com/a3has/team10App/pull/39)
+- [PR 2](https://github.com/a3has/team10App/pull/39)
