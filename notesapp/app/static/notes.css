@@ -110,7 +110,7 @@
 
 .note-content, .note-form {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+
     font-size: 1em;
     font-weight: normal;
     overflow: auto;
@@ -131,11 +131,12 @@
 }
 
 .note-details {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     position:absolute;
     bottom: 2px;
     left: 10px;
     width: calc(100% - 20px);
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #555;
 }
 
@@ -201,4 +202,31 @@
     gap: 20px;
 }
 
+.note-tags {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position:absolute;
+    bottom: 40px;
+    left: 10px;
+    width: calc(100% - 20px);
+    font-size: 0.9em;
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
+.tag-pill {
+    background-color: #049e4c; /* or any color you prefer */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px; /* Creates the pill shape */
+    font-size: 0.8em;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

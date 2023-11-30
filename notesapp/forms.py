@@ -4,16 +4,14 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Le
 from models import User
 from flask_ckeditor import CKEditorField
 
-
-class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[
-                           DataRequired()])  # login boxes
+class LoginForm(FlaskForm): # create fields for login infomation 
+    username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
 
-class RegistrationForm(FlaskForm):  # sign up forms
+class RegistrationForm(FlaskForm): # set fields for user name, passsword and email 
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -31,14 +29,14 @@ class RegistrationForm(FlaskForm):  # sign up forms
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-
+# Form for creating notes
 class NoteForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    note = CKEditorField('Content', validators=[DataRequired()])
+    title = StringField('Title', validators=[DataRequired()]) # title field
+    note = CKEditorField('Content', validators=[DataRequired()]) # content field
     color = SelectField(
-        'Background Color',
-        choices=[
-            ('#e7e7e7', 'Default'),      # Pastel gray
+        'Color',
+        choices=[                     # note background color
+            ('#e7e7e7', 'Default'),   # Pastel gray
             ('#daf0f7', 'Blue'),      # Pastel blue
             ('#77dd77', 'Green'),     # Pastel green
             ('#fdfd96', 'Yellow'),    # Pastel yellow
@@ -51,15 +49,16 @@ class NoteForm(FlaskForm):
         ],
         validators=[DataRequired()]
     )
-    submit = SubmitField('Submit')
-
-
-class AdvancedSearchForm(FlaskForm):
-    task_name = StringField('Task Name')
+    # field for note tags
+    tags = StringField('Tags', description='Separate tags with commas', render_kw={"placeholder": "Enter tags separated by commas"})
+    submit = SubmitField('Submit')   # submit button
+    
+class AdvancedSearchForm(FlaskForm): # set varibles like task name sumb and compelted 
+    task_name = StringField('Task Name') 
     is_complete = BooleanField('Completed')
     submit = SubmitField('Search')
 
-
+# form for editing user profile
 class EditProfileForm(FlaskForm):
     username = StringField('Name', validators=[
                            DataRequired(), Length(min=2, max=64)])

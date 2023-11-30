@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request, abort, ses
 from app import app, db
 from forms import *
 from flask_login import current_user, login_user, logout_user, login_required
-from models import Note, User, Todo
+from models import *
 from werkzeug.urls import url_parse
 from forms import RegistrationForm, AdvancedSearchForm, NoteForm
 import google.auth
@@ -217,9 +217,9 @@ def login():
 @app.route('/home')
 @login_required
 def home():
-    return render_template('home.html')
+    return render_template('home.html') # redirect to home page 
 
-
+# route for viewing notes. Crud operations accessible from here
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
     form = NoteForm()
@@ -229,6 +229,12 @@ def notes():
             body=form.note.data,
             color=form.color.data,
             author=current_user)
+        for tag_name in form.tags.data.split(','):
+            tag = Tag.query.filter_by(name=tag_name.strip()).first()
+            if not tag:
+                tag = Tag(name=tag_name.strip())
+                db.session.add(tag)
+            note.tags.append(tag)
         db.session.add(note)
         db.session.commit()
         return redirect(url_for('notes'))
@@ -252,76 +258,75 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
+@app.route('/user', methods=['GET', 'POST']) # handle get and post request 
+def profile(): # profile page 
+    form = EditProfileForm() # created form using edit profile form  
+    user = User.query.get_or_404(current_user.id) # get user from data base 
 
-@app.route('/user', methods=['GET', 'POST'])
-def profile():
-    form = EditProfileForm()
-    user = User.query.get_or_404(current_user.id)
-
-    if form.validate_on_submit():
+    if form.validate_on_submit(): # if validated update user information 
         user.username = form.username.data
         user.email = form.email.data
         user.biography = form.biography.data
-        db.session.commit()
+        db.session.commit() # save changes 
         # Redirect to avoid post/redirect/get pattern
         return redirect(url_for('profile'))
 
-    elif request.method == 'GET':
+    elif request.method == 'GET': # if request is to get then udpdate information 
         form.username.data = user.username
         form.email.data = user.email
         form.biography.data = user.biography
 
-    note_count = user.notes.count()
+    note_count = user.notes.count() # count the number of notes for the user 
     return render_template('user.html', title='User Profile', form=form, user=user, note_count=note_count)
 
 
 @app.route('/todo')
 def todo():
-    todo_list = Todo.query.filter_by(user_id=current_user.id).all()
+    todo_list = Todo.query.filter_by(user_id=current_user.id).all() # create todo for unique users 
     # todo_list = current_user.Todo.all()
     # todo_list=Todo.query.all()
-    return render_template('todo.html', todo_list=todo_list)
+    return render_template('todo.html', todo_list=todo_list) # user redered hmtl template 
 
 
 @app.route('/add', methods=['POST'])
 def add():
-    name = request.form.get("name")
-    new_task = Todo(name=name, done=False, user_id=current_user.id)
-    db.session.add(new_task)
-    db.session.commit()
-    return redirect(url_for("todo"))
+    name = request.form.get("name") # gt name from form
+    new_task = Todo(name=name, done=False, user_id=current_user.id) # new task for unique users 
+    db.session.add(new_task) # add task to db 
+    db.session.commit() # commmit to db 
+    return redirect(url_for("todo")) # rediect 
 
 
 @app.route('/update/<int:todo_id>')
 def update(todo_id):
-    todo = Todo.query.get(todo_id)
-    todo.done = not todo.done
-    db.session.commit()
+    todo = Todo.query.get(todo_id) # get todo id from data base 
+    todo.done = not todo.done # toggle wheter task is done or not 
+    db.session.commit() # commit to db 
     return redirect(url_for("todo"))
 
 
 @app.route('/delete/<int:todo_id>')
 def delete(todo_id):
-    todo = Todo.query.get(todo_id)
-    db.session.delete(todo)
-    db.session.commit()
-    return redirect(url_for("todo"))
+    todo = Todo.query.get(todo_id) # get todo id from data base 
+    db.session.delete(todo) # delete the task from db 
+    db.session.commit() # commit 
+    return redirect(url_for("todo")) #redirect 
 
 
 @app.route('/advanced_searching', methods=['GET', 'POST'])
 def advanced_search():
-    form = AdvancedSearchForm()
+    form = AdvancedSearchForm() # create instance using advanced searh 
 
-    if form.validate_on_submit():
-        # Build the query based on form input
+    if form.validate_on_submit(): # make sure it is valid 
+        # Build the query based on form input user id unique 
         query = Todo.query.filter_by(user_id=current_user.id)
         # query = Todo.query
 
-        if form.task_name.data:
+        if form.task_name.data: # check if task is empty and filter by task name
             query = query.filter(Todo.name.ilike(f'%{form.task_name.data}%'))
 
-        if form.is_complete.data is not None:
-            query = query.filter(Todo.done == form.is_complete.data)
+        if form.is_complete.data is not None: # check if not none 
+            query = query.filter(Todo.done == form.is_complete.data) # filter task by cmpletion
 
         # Execute the query for all
         results = query.all()
@@ -336,7 +341,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-
+# route for editing existing notes on the /notes route
 @app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
 @login_required
 def edit_note(note_id):
@@ -347,14 +352,22 @@ def edit_note(note_id):
     if form.validate_on_submit():
         note.title = form.title.data
         note.body = form.note.data
+        note.tags = []
+        for tag_name in form.tags.data.split(','):  # Assuming tags are comma-separated
+            tag = Tag.query.filter_by(name=tag_name.strip()).first()
+            if not tag:
+                tag = Tag(name=tag_name.strip())
+                db.session.add(tag)
+            note.tags.append(tag)
         db.session.commit()
         return redirect(url_for('notes'))
     elif request.method == 'GET':
         form.title.data = note.title
         form.note.data = note.body
+        form.tags.data = ', '.join([tag.name for tag in note.tags])  # Convert tags to a comma-separated string
     return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
 
-
+# route for deleting existing notes on the /notes route
 @app.route('/delete_note/<int:note_id>', methods=['POST'])
 @login_required
 def delete_note(note_id):

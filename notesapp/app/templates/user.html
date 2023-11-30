@@ -8,6 +8,7 @@
     <div class="header-container">
         <h1>{{ user.username }}'s Profile</h1>
         <button class="edit">edit</button>
+        <!-- Form to edit user profile -->
         <div id="edit-form" style="display:none;">
             <form action="" method="post" class="note-form" >
                 {{ form.hidden_tag() }}
@@ -34,7 +35,7 @@
             </form>
         </div>
     </div>
-       
+    
     <div class="profile-info">
         <p><strong>Name:</strong> {{ user.username }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
