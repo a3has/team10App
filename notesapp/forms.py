@@ -50,12 +50,12 @@ class NoteForm(FlaskForm):
     )
     submit = SubmitField('Submit')
     
-class AdvancedSearchForm(FlaskForm):
-    task_name = StringField('Task Name')
+class AdvancedSearchForm(FlaskForm): # set varibles like task name sumb and compelted 
+    task_name = StringField('Task Name') 
     is_complete = BooleanField('Completed')
     submit = SubmitField('Search')
 
-class EditProfileForm(FlaskForm):
+class EditProfileForm(FlaskForm): # set user name email and bio 
     username = StringField('Name', validators=[DataRequired(), Length(min=2, max=64)])
     email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
     biography = TextAreaField('Biography', validators=[Length(max=500)])
