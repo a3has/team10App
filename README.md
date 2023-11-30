@@ -46,14 +46,6 @@ pip3 install werkzeug==2.2.2
 ```bash
 flask run
 ```
-## Packages
-Find a list of the packages we used for this application [here](https://github.com/a3has/team10App/blob/milestone2/notesapp/requirements.txt).
-
-## Requirements 
-    - To Do Checklist (Sammy)
-    - Search (Sammy)
-    - Homepage (Sammy)
-    - Search (Sammy)
 
 ## How To Use
 ### Login
@@ -99,6 +91,15 @@ Find a list of the packages we used for this application [here](https://github.c
 ### Logout
 1. From the /home route, click the `Logout` button. 
 2. You will then be logged out, and redirected back to the /login route.
+
+## Packages
+Find a list of the packages we used for this application [here](https://github.com/a3has/team10App/blob/milestone2/notesapp/requirements.txt).
+
+## Requirements 
+    - To Do Checklist (Sammy)
+    - Search (Sammy)
+    - Homepage (Sammy)
+    - Search (Sammy)
 
 ## PullRequest
 - [SammyPull](https://github.com/a3has/team10App/commit/bb241d9ac4581173bcae478580cd8f3db60c4f9d)
