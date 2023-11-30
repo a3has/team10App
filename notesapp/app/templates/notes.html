@@ -2,7 +2,6 @@
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='notes.css') }}">
 {% endblock %}
 
-
 {% block content %}
   <div class="note-container">
     <div class="header-container">
@@ -10,6 +9,7 @@
       <a href="{{ url_for('home') }}">StickyNotes!</a>
     </div>
     <button id="create-note" class="create-note">Create Note</button>
+    <!-- Form for creating notes -->
     <form action="" method="post" class="note-form" style="display: none;">
       {{ form.hidden_tag() }}
 
@@ -37,6 +37,16 @@
         {% endfor %}
       </div>
 
+      <div>
+        <div class="tags">
+          {{ form.tags.label(class='tag-label') }}
+          {{ form.tags }}
+        </div>
+        {% for error in form.tags.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+      </div>
+
       {{ form.submit }}
       <button type="button" id="cancel-button" class="cancel-btn">Cancel</button>
     </form>
@@ -55,9 +65,13 @@
       <p class="note-title">{{ note.title }}</p>
       <p class="note-content">{{ note.body|safe }}</p>
       <p class="note-details">
-        Note ID: {{ note.id }} <br>
-        {{ note.timestamp.strftime('%Y/%m/%d %H:%M:%S') }}
+        Last Edited: {{ note.timestamp.strftime('%B %d, %Y') }}
       </p>
+      <div class="note-tags">
+        {% for tag in note.tags %}
+            <span class="tag-pill">{{ tag.name }}</span>
+        {% endfor %}
+    </div>
     </div>
     {% endfor %} 
   </div>
