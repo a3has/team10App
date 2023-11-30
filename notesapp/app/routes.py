@@ -209,7 +209,7 @@ def login():
 def home():
     return render_template('home.html')
 
-
+# route for viewing notes. Crud operations accessible from here
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
     form = NoteForm()
@@ -324,6 +324,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# route for editing existing notes on the /notes route
 @app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
 @login_required
 def edit_note(note_id):
@@ -341,7 +342,7 @@ def edit_note(note_id):
         form.note.data = note.body
     return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
 
-
+# route for deleting existing notes on the /notes route
 @app.route('/delete_note/<int:note_id>', methods=['POST'])
 @login_required
 def delete_note(note_id):

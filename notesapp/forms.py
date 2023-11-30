@@ -29,13 +29,14 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
+# Form for creating notes
 class NoteForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
-    note = CKEditorField('Content', validators=[DataRequired()])
+    title = StringField('Title', validators=[DataRequired()]) # title field
+    note = CKEditorField('Content', validators=[DataRequired()]) # content field
     color = SelectField(
         'Background Color',
-        choices=[
-            ('#e7e7e7', 'Default'),      # Pastel gray
+        choices=[                     # note background color
+            ('#e7e7e7', 'Default'),   # Pastel gray
             ('#daf0f7', 'Blue'),      # Pastel blue
             ('#77dd77', 'Green'),     # Pastel green
             ('#fdfd96', 'Yellow'),    # Pastel yellow
@@ -48,13 +49,14 @@ class NoteForm(FlaskForm):
         ],
         validators=[DataRequired()]
     )
-    submit = SubmitField('Submit')
+    submit = SubmitField('Submit')   # submit button
     
 class AdvancedSearchForm(FlaskForm):
     task_name = StringField('Task Name')
     is_complete = BooleanField('Completed')
     submit = SubmitField('Search')
 
+# form for editing user profile
 class EditProfileForm(FlaskForm):
     username = StringField('Name', validators=[DataRequired(), Length(min=2, max=64)])
     email = StringField('Email', validators=[DataRequired(), Email(), Length(max=120)])
