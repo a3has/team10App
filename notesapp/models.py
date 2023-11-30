@@ -41,7 +41,7 @@ class Note(db.Model):
     def __repr__(self):
         return '<Post {}: {}>'.format(self.title, self.body)
 
-class Todo(db.Model):
+class Todo(db.Model): # create colums for taskid, name and userid 
     task_id=db.Column(db.Integer,primary_key=True)
     name=db.Column(db.String(100))
     done=db.Column(db.Boolean)

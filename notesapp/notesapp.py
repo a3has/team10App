@@ -7,6 +7,6 @@ os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'
 os.environ['WTF_CSRF_CHECK_DEFAULT'] = 'False'
 
 
-@app.shell_context_processor
+@app.shell_context_processor 
 def make_shell_context():
     return {'db': db, 'User': User, 'Note': Note}
