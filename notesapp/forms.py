@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
 from models import User
-from flask_ckeditor import CKEditorField
+from flask_ckeditor import CKEditorField # Imports flask CKEditor which allows usage of rich text editor
 
 class LoginForm(FlaskForm): # create fields for login infomation 
     username = StringField('Username', validators=[DataRequired()])
@@ -31,8 +31,8 @@ class RegistrationForm(FlaskForm): # set fields for user name, passsword and ema
 
 # Form for creating notes
 class NoteForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()]) # title field
-    note = CKEditorField('Content', validators=[DataRequired()]) # content field
+    title = StringField('Title', validators=[DataRequired()])
+    note = CKEditorField('Content', validators=[DataRequired()]) # CKEditorField allows the use of Rich text editor
     color = SelectField(
         'Color',
         choices=[                     # note background color
