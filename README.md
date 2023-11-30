@@ -116,3 +116,8 @@ Find a list of the packages we used for this application [here](https://github.c
 - [PR 3](https://github.com/a3has/team10App/commit/6df975e8fcc909d60aea1e8e59f1ec4e3ace9069)
 
 - [PR 4](https://github.com/a3has/team10App/commit/3e74ca9e8ae35721fb2de6e0f6e532d04687d0c7)
+
+### Jonathan
+- [PR 1 - Create Note, Edit Note, Delete Note, Notes page](https://github.com/a3has/team10App/commit/78be911b44b0fb25e1075a055e192f6db0a1cfbd)
+- [PR 2]()
+- [PR 3]()
