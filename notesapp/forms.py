@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length, InputRequired
 from models import User
 from flask_ckeditor import CKEditorField # Imports flask CKEditor which allows usage of rich text editor
 
@@ -58,6 +58,16 @@ class AdvancedSearchForm(FlaskForm): # set varibles like task name sumb and comp
     is_complete = BooleanField('Completed')
     submit = SubmitField('Search')
 
+class AdvancedSearchNoteForm(FlaskForm):
+    title = StringField('Note Title')
+    body = StringField('Note Body')  # Modify 
+    tag = StringField('Note Tag')    # Modify 
+    submit = SubmitField('Search')
+
+class RegexSearchForm(FlaskForm):
+    regex_query = StringField('Regex Query', validators=[InputRequired()])
+    submit = SubmitField('Search')
+    
 # form for editing user profile
 class EditProfileForm(FlaskForm):
     username = StringField('Name', validators=[

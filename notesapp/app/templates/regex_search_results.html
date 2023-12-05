@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regex Search Results</title>
+</head>
+<body>
+    <a href="home">
+        <button class="home " >Home</button>
+    </a>
+    <h1>Regex Search Results</h1>
+
+    <!-- Display search results if there are any -->
+    {% if results_todo or results_note %}
+        <!-- Display Todo results -->
+        <h2>Todo Results</h2>
+        <ul>
+            {% for result in results_todo %}
+                <li>{{ result.name }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Display Note results -->
+        <h2>Note Results</h2>
+        <ul>
+            {% for result in results_note %}
+                <li>{{ result.title }} - {{ result.body|safe }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <a href="javascript:history.go(-1)">
+        <button>Back</button>
+    </a>
+</body>
+</html>

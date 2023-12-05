@@ -4,7 +4,7 @@ from forms import *
 from flask_login import current_user, login_user, logout_user, login_required
 from models import *
 from werkzeug.urls import url_parse
-from forms import RegistrationForm, AdvancedSearchForm, NoteForm
+from forms import RegistrationForm, AdvancedSearchForm, NoteForm, RegexSearchForm
 import google.auth
 from googleapiclient.discovery import build
 import google.oauth2.credentials
@@ -17,7 +17,7 @@ from google.oauth2.credentials import Credentials
 import datetime
 import os
 from flask_sqlalchemy import SQLAlchemy
-
+import re
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
 
@@ -312,28 +312,80 @@ def delete(todo_id):
     db.session.commit() # commit 
     return redirect(url_for("todo")) #redirect 
 
-
 @app.route('/advanced_searching', methods=['GET', 'POST'])
 def advanced_search():
-    form = AdvancedSearchForm() # create instance using advanced searh 
+    form_todo = AdvancedSearchForm()  # AdvancedSearchForm for Todo
+    form_note = AdvancedSearchNoteForm()  # AdvancedSearchNoteForm for Note
 
-    if form.validate_on_submit(): # make sure it is valid 
-        # Build the query based on form input user id unique 
-        query = Todo.query.filter_by(user_id=current_user.id)
-        # query = Todo.query
+    results_todo, results_note = [], []
 
-        if form.task_name.data: # check if task is empty and filter by task name
-            query = query.filter(Todo.name.ilike(f'%{form.task_name.data}%'))
+    if form_todo.validate_on_submit() or form_note.validate_on_submit():
 
-        if form.is_complete.data is not None: # check if not none 
-            query = query.filter(Todo.done == form.is_complete.data) # filter task by cmpletion
+        # Clear the existing search results before performing a new search
+        results_todo, results_note = [], []
 
-        # Execute the query for all
-        results = query.all()
+        if form_todo.task_name.data:
+            query_todo = Todo.query.filter_by(user_id=current_user.id)
 
-        return render_template('search_results.html', results=results)
+            query_todo = query_todo.filter(Todo.name.ilike(f'%{form_todo.task_name.data}%'))
 
-    return render_template('adv_search.html', form=form)
+            # Filter based on completion status
+            query_todo = query_todo.filter(Todo.done == form_todo.is_complete.data)
+
+            results_todo = query_todo.all()
+
+        if form_note.title.data or form_note.body.data or form_note.tag.data:
+            query_note = Note.query.filter_by(user_id=current_user.id)
+
+            if form_note.title.data:
+                query_note = query_note.filter(Note.title.ilike(f'%{form_note.title.data}%'))
+
+            if form_note.body.data:
+                query_note = query_note.filter(Note.body.ilike(f'%{form_note.body.data}%'))
+
+            if form_note.tag.data:
+                query_note = query_note.filter(Note.tags.any(Tag.name.ilike(f'%{form_note.tag.data}%')))
+
+            results_note = query_note.all()
+
+        # Render the search results page if there are results in either todo list or note search
+        if results_todo or results_note:
+            return render_template('search_results.html', form_todo=form_todo, form_note=form_note, results_todo=results_todo, results_note=results_note)
+
+    # Render the search page with the form and no results initially
+    return render_template('adv_search.html', form_todo=form_todo, form_note=form_note, results_todo=None, results_note=None)
+
+@app.route('/regex_search', methods=['GET', 'POST'])
+def regex_search():
+    form = RegexSearchForm()  #RegexSearchForm
+
+    results_todo, results_note = [], []
+
+    if form.validate_on_submit():
+        # Clear the existing search results before performing a new search
+        results_todo, results_note = [], []
+
+        search_query = form.regex_query.data
+
+        if search_query:
+            # Perform regex search for todos
+            query_todo = Todo.query.filter_by(user_id=current_user.id)
+            query_todo = query_todo.filter(Todo.name.op('REGEXP')(search_query))
+            results_todo = query_todo.all()
+
+            # Perform regex search for notes
+            query_note = Note.query.filter_by(user_id=current_user.id)
+            query_note = query_note.filter(
+                (Note.title.op('REGEXP')(search_query)) | (Note.body.op('REGEXP')(search_query))
+            )
+            results_note = query_note.all()
+
+        # Render the search results page if there are results in either todo list or note search
+        if results_todo or results_note:
+            return render_template('regex_search_results.html', form=form, results_todo=results_todo, results_note=results_note)
+
+    # Render the regex search page with the form and no results initially
+    return render_template('regex_search.html', form=form, results_todo=None, results_note=None)
 
 
 @app.route('/logout')  # logs out the user.
