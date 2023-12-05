@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +6,32 @@
 </head>
 <body>
     <h1>Search Results</h1>
+
+    <!-- Display the Todo results -->
+    <h2>Todo Results</h2>
     <ul>
-        {% for result in results %}
-            <li>{{ result.name }} - {% if result.done %}Completed{% else %}Not Completed{% endif %}</li>
-        {% endfor %}
+        {% if results_todo %}
+            {% for result in results_todo %}
+                <li>{{ result.name }} - {% if result.done %}Completed{% else %}Not Completed{% endif %}</li>
+            {% endfor %}
+        {% else %}
+            <li>No TODO results found.</li>
+        {% endif %}        
     </ul>
+
+    <!-- Display Note results -->
+    <h2>Note Results</h2>
+    <ul>
+        {% if results_note %}
+            {% for result in results_note %}
+                <li>{{ result.title }} - {{ result.body | safe }}</li>
+            {% endfor %}
+        {% else %}
+            <li>No Note results found.</li>
+        {% endif %}
+    </ul>
+    <a href="javascript:history.go(-1)">
+        <button>Back</button>
+    </a>
 </body>
 </html>

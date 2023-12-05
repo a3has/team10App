@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regex Search</title>
+</head>
+<body>
+    <a href="home">
+        <button class="home " >Home</button>
+    </a>
+    <h1>Regex Search</h1>
+
+    <form method="post" action="{{ url_for('regex_search') }}">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+
+        <label for="regex_query">{{ form.regex_query.label }}</label>
+        {{ form.regex_query }}
+        
+        {{ form.submit }}
+    </form>
+
+    {% if results_todo or results_note %}
+        <!-- Display search results here -->
+        <h2>Search Results</h2>
+        <!-- Display Todo results -->
+        <h3>Todo Results</h3>
+        <ul>
+            {% for result in results_todo %}
+                <li>{{ result.name }}</li>
+            {% endfor %}
+
+            <!-- Display Note results -->
+            <h3>Note Results</h3>
+            <ul>
+                {% for result in results_note %}
+                    <li>{{ result.title }} - {{ result.body }}</li>
+                {% endfor %}
+            </ul>
+        </ul>
+    {% endif %}
+</body>
+</html>
