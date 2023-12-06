@@ -1,0 +1,57 @@
+/* buttonlayout.css */
+
+.button-container {
+    text-align: center;
+}
+
+.home, .todo, .add-note, .g-cal, .regex, .AdvancedSearchForm, .create_note, .profile, .logout {
+    height: 50px;
+    width: 120px; /* Increased width for all buttons */
+    display: inline-block;
+    margin-right: 10px; /* Adjusted margin value */
+}
+
+.home {
+    background-color: rgb(88, 19, 75);
+    color: white;
+}
+
+.todo {
+    background-color: rgb(33, 23, 135);
+    color: white;
+}
+
+.profile {
+    background-color: rgb(137, 143, 26);
+    color: black;
+}
+
+.add-note {
+    background-color: green;
+    color: white;
+}
+
+.logout {
+    background-color: rgb(0, 113, 128);
+    color: white;
+}
+
+.g-cal {
+    background-color: rgb(221, 46, 15);
+    color: white;
+}
+
+.regex {
+    background-color: rgb(155, 54, 232);
+    color: white;
+}
+
+.AdvancedSearchForm {
+    background-color: rgb(0, 113, 128);
+    color: white;
+}
+
+.create_note {
+    background-color: rgb(128, 0, 45);
+    color: white;
+}
