@@ -20,6 +20,9 @@ from flask_sqlalchemy import SQLAlchemy
 import re
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
+from models import Note
+import pandas as pd
+import plotly.express as px
 
 with app.app_context():
 
@@ -429,3 +432,30 @@ def delete_note(note_id):
     db.session.delete(note)
     db.session.commit()
     return redirect(url_for('notes'))
+
+@app.route('/note_visualization')
+def note_visualization():
+    # Fetch notes from the database
+    notes = Note.query.all()
+
+    # Extract date information from notes
+    dates = [note.timestamp.date() for note in notes]
+
+    # Create a DataFrame for Plotly
+    data = {'Date': dates}
+    df = pd.DataFrame(data)
+
+    # Count the number of notes for each date
+    note_counts = df['Date'].value_counts().sort_index()
+
+    # Plot the bar chart
+    fig = px.bar(x=note_counts.index, y=note_counts.values, labels={'x': 'Date', 'y': 'Number of Notes'},
+                 title='Note Visualization based on Date Posted')
+    
+    # Customize the layout if needed
+    fig.update_layout(xaxis_title='Date', yaxis_title='Number of Notes')
+
+    # Convert the Plotly figure to JSON to be rendered in the template
+    graph_json = fig.to_json()
+
+    return render_template('note_visualization.html', graph_json=graph_json)
