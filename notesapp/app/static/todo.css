@@ -1,94 +1,101 @@
+
 a:link {
-     text-decoration: none;
-     }
+    text-decoration: none;
+}
 
-div
-{
-  text-align: left;
+
+div {
+    text-align: left;
 }
-input
-{
-border-radius:4px;
- padding: 8px 16px;
- font-size:16px;
+
+
+input {
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 16px;
 }
-#first{
-margin-top: 50px;
+
+/*  first container */
+#first {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: flex-start; /* Align to the top */
+    height: 200vh;
+    background-color: #f0f0f0; /* Grey background */
+
 }
+
+/*  home button */
 .home {
-  width: 70px;
-  height: 70px;
-  background: #8c0707;
-  color:green;
-  border:none;
-  text-align: center;
-  border-radius: 20px;
-  font-size:20px;
-  display: flex;
-  align-items: center;
-  justify-content: center; 
+    background-color: #dc3545;
+    color: white;
+    padding: 7px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease;
 
 }
-.button1 {
+
+/* other buttons */
+.button1, .button2, .button3 {
     width: 50px;
     height: 25px;
-    background: #070707;
-    color:green;
-    border:none;
+    border: none;
     text-align: center;
     border-radius: 5px;
-
-    font-size:16px;
+    font-size: 16px;
 }
+
+
+.button1 { /*  ADD Button*/
+    background: #44c300;
+    color: white;
+}
+
+
 .button2 {
-    width: 50px;
-    height: 25px;
-    background: #676868;
-    color:white;
+    background: #4CAF50; /* Green completed button */
+    color: white;
     padding: 10px;
-    text-align: center;
-    border-radius: 5px;
     font-weight: bold;
     line-height: 25px;
 }
+
+
 .button3 {
-    width: 50px;
-    height: 10px;
-    background: rgb(182, 2, 2);
+    background: #dc3545; /* Red delete button */
     padding: 10px;
-    text-align: center;
-    border-radius: 5px;
     color: white;
     font-weight: bold;
     line-height: 25px;
 }
-.label {
-  color: white;
-  padding: 8px;
-  font-family: Arial;
 
+/* Styling for label */
+.thick {
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    font-family: Arial;
 }
-.thick{font-weight: bold;font-size: 20px;}
-.done {background-color: #04AA6D;}
-.pending {background-color: #ff9800;}
+
+/* Styling for table and its cells */
 table, td {
-  border: 1px none;
-  padding: 15px;
-  }
-table {
-  margin-left: left;
-  margin-right: auto;
-}
-h1
-{
-color:#08005a;
+    border: 1px none;
+    padding: 15px;
 }
 
-#first {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  justify-content: center;
-  height: 40vh; /* Optionally, set the height of the container */
+
+h1 {
+    color: #08005a;
+    text-align: center;
 }
 
+/* Styling for Complete label */
+.Complete {
+    color: #dc3545; /* Red color for Not Complete label */
+}
+
+.task-list {
+    font-size: 60px; /* Adjust the size as needed */
+}
