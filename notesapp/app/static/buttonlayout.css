@@ -1,3 +1,39 @@
+body {
+    background-image: url("{{ url_for('static', filename='stickynotes.jpg') }}");
+    background-size: cover;  
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+}
+
+nav {
+    background-color: #333; /* Set a background color for the navigation bar */
+    overflow: hidden; 
+}
+
+nav a {
+    float: left; 
+    display: block; 
+    color: white; /* Set text color to white */
+    text-align: center; 
+    padding: 14px 16px; 
+    text-decoration: none; 
+}
+
+nav a:hover {
+    background-color: #ddd; /* Add a background color on hover */
+    color: black; /* Change text color on hover */
+}
+
+h2 {
+    text-align: center;
+    margin-top: 50px; 
+    color: #fff; 
+}
+
+.button-container {
+    text-align: center; 
+    margin-top: 20px; 
+}
 
 
 .profile {
@@ -62,3 +98,5 @@
     width: 120px;
     margin-right: 80px;
 }
+
+/* Add any additional styles or adjustments as needed */
