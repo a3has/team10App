@@ -10,11 +10,15 @@
 
  
 <body>
+    <!--<a href="home">
+        <button class="home " >Back</button>
+    </a> -->
+    <a class="home" href="{{ url_for('home') }}">Back</a>   
 <div id="first" >
+
         <h1>My To Do List </h1>
-        <a href="home">
-            <button class="home " >Home</button>
-        </a>
+        
+
 
         <form  action="/add" method="post">
             <div >
@@ -31,7 +35,7 @@
             <td class="highlight">{{ todo.name }}</td>
             {% if todo.done == False %}
 
-            <td><label style="background-color:#333333; color:green;"class="Complete"> Not Complete </label></td>
+            <td><label class="Complete"> Not Complete </label></td>
             {% endif %}
             <td><a  href="/update/{{ todo.task_id }}" class="button2">Complete</a></td>
             <td><a  href="/delete/{{ todo.task_id }}" class="button3">Delete</a></td>
