@@ -4,7 +4,7 @@
     text-align: center;
 }
 
-.home, .todo, .add-note, .g-cal, .regex, .AdvancedSearchForm, .create_note, .profile, .logout {
+.home, .todo, .add-note, .g-cal, .regex, .AdvancedSearchForm, .create_note, .profile, .note-visualization, .logout {
     height: 50px;
     width: 120px; /* Increased width for all buttons */
     display: inline-block;
@@ -53,5 +53,10 @@
 
 .create_note {
     background-color: rgb(128, 0, 45);
+    color: white;
+}
+
+.note-visualization {
+    background-color: blueviolet;
     color: white;
 }

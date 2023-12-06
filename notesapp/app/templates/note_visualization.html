@@ -1,20 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note Visualization</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <h1>Note Visualization based on Date Posted</h1>
-    
-    <div id="note-visualization"></div>
+{% extends "base.html" %}
 
-    <script>
-        // Load the Plotly figure from JSON and render it
-        var graphJSON = {{ graph_json | safe }};
-        Plotly.newPlot('note-visualization', graphJSON);
-    </script>
-</body>
-</html>
+{% block content %}
+  <div class="container">
+    <h2>Note Visualizations</h2>
+
+    <!-- Date-Based Visualization -->
+    <div id="date-graph-container">
+      <!-- This is where the date-based graph will be rendered -->
+    </div>
+
+    <!-- Tag-Based Visualization -->
+    <div id="tag-graph-container">
+      <!-- This is where the tag-based graph will be rendered -->
+    </div>
+  </div>
+
+  <!-- Include Plotly library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script>
+    // Extract date information from notes
+    var dates = {{ date_counts | tojson | safe }};
+    var date_data = {
+      x: dates.map(function(entry) { return entry.date; }),
+      y: dates.map(function(entry) { return entry.note_count; }),
+      type: 'bar',
+      name: 'Notes by Date'
+    };
+
+    // Render date-based graph
+    Plotly.newPlot('date-graph-container', [date_data], {title: 'Note Counts by Date'});
+
+    // Extract tag information from notes
+    var tags = {{ tag_counts | tojson | safe }};
+    var tag_data = {
+      labels: tags.map(function(entry) { return entry.tag_name; }),
+      values: tags.map(function(entry) { return entry.note_count; }),
+      type: 'pie',
+      name: 'Notes by Tag'
+    };
+
+    // Render tag-based graph
+    Plotly.newPlot('tag-graph-container', [tag_data], {title: 'Note Counts by Tag'});
+  </script>
+{% endblock %}

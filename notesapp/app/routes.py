@@ -20,9 +20,11 @@ from flask_sqlalchemy import SQLAlchemy
 import re
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
-from models import Note
+from models import Note, Tag, note_tags
 import pandas as pd
 import plotly.express as px
+from sqlalchemy import func
+
 
 with app.app_context():
 
@@ -435,27 +437,14 @@ def delete_note(note_id):
 
 @app.route('/note_visualization')
 def note_visualization():
-    # Fetch notes from the database
-    notes = Note.query.all()
-
     # Extract date information from notes
-    dates = [note.timestamp.date() for note in notes]
+    date_counts = db.session.query(func.date(Note.timestamp).label('date'), func.count().label('note_count')).group_by('date').all()
 
-    # Create a DataFrame for Plotly
-    data = {'Date': dates}
-    df = pd.DataFrame(data)
+    # Extract tag information from notes
+    tag_counts = db.session.query(Tag.name.label('tag_name'), func.count().label('note_count')).join(note_tags).group_by(Tag.name).all()
 
-    # Count the number of notes for each date
-    note_counts = df['Date'].value_counts().sort_index()
+    # Convert Row objects to dictionaries for easy serialization
+    date_counts = [{'date': entry.date, 'note_count': entry.note_count} for entry in date_counts]
+    tag_counts = [{'tag_name': entry.tag_name, 'note_count': entry.note_count} for entry in tag_counts]
 
-    # Plot the bar chart
-    fig = px.bar(x=note_counts.index, y=note_counts.values, labels={'x': 'Date', 'y': 'Number of Notes'},
-                 title='Note Visualization based on Date Posted')
-    
-    # Customize the layout if needed
-    fig.update_layout(xaxis_title='Date', yaxis_title='Number of Notes')
-
-    # Convert the Plotly figure to JSON to be rendered in the template
-    graph_json = fig.to_json()
-
-    return render_template('note_visualization.html', graph_json=graph_json)
+    return render_template('note_visualization.html', title='Note Visualizations', date_counts=date_counts, tag_counts=tag_counts)
