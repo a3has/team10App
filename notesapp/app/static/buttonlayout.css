@@ -8,20 +8,23 @@ body {
 nav {
     background-color: #333; /* Set a background color for the navigation bar */
     overflow: hidden; 
+    display: flex; /* Use flexbox to distribute buttons evenly */
+    justify-content: space-evenly; /* Evenly distribute buttons horizontally */
 }
 
 nav a {
-    float: left; 
     display: block; 
     color: white; /* Set text color to white */
     text-align: center; 
-    padding: 14px 16px; 
+    padding: 14px 0; 
     text-decoration: none; 
+    width: 14.28%; /* Set a width to evenly distribute the buttons (100% / 7 buttons) */
+    box-sizing: border-box; 
 }
 
 nav a:hover {
     background-color: #ddd; /* Add a background color on hover */
-    color: black; /* Change text color on hover */
+    color: black; 
 }
 
 h2 {
@@ -35,14 +38,15 @@ h2 {
     margin-top: 20px; 
 }
 
+.profile, .todo, .add-note, .AdvancedSearchForm, .regex, .g-cal, .logout {
+    margin-right: 0;
+}
 
 .profile {
     background-color: rgb(88, 19, 75);
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
 
 .todo {
@@ -50,8 +54,6 @@ h2 {
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
 
 .add-note {
@@ -59,8 +61,6 @@ h2 {
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
 
 .AdvancedSearchForm {
@@ -68,8 +68,6 @@ h2 {
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
 
 .regex {
@@ -77,8 +75,6 @@ h2 {
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
 
 .g-cal {
@@ -86,8 +82,6 @@ h2 {
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
 
 .logout {
@@ -95,8 +89,4 @@ h2 {
     color: white;
     display: inline-block;
     height: 50px;
-    width: 120px;
-    margin-right: 80px;
 }
-
-/* Add any additional styles or adjustments as needed */
