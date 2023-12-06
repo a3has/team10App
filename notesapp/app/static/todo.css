@@ -22,19 +22,19 @@ input {
     align-items: center; /* Center horizontally */
     justify-content: flex-start; /* Align to the top */
     height: 100vh;
-    background-color: #b8b4b4; /* Grey background */
+    background-color: #e2e2e2; /* Grey background */
 
 }
 
 /*  home button */
 .home {
     background-color: #dc3545;
-    color: white;
+    color: rgb(251, 251, 251);
     padding: 7px 15px;
     text-decoration: none;
-    border-radius: 5px;
-    margin-bottom: 30px;
-    transition: background-color 0.3s ease;
+    border-radius: 10px;
+
+  
 
 }
 

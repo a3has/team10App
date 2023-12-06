@@ -2,14 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Advanced Search</title>
+    <title>Search</title>
+    <style>
+        body {
+            background-color: #ffffff; /* BACKGROUND */
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            height: 55vh; /* Full viewport height */
+            margin: 0; 
+        }
 
+        h1 {
+            text-align: center;
+        }
+
+        a.home {
+            display: inline-block; /* Make the home button a block element */
+            color: rgb(254, 254, 254); /* text box background*/
+            margin-bottom: 0px; /* Add some space below the home button */
+            text-decoration: none; /* Remove underlines from links */
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: red; /* Red color for home button */
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e2e2e2; /*text box colors*/
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input, select {
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Green color for submit button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
 </head>
 <body>
-    <h1>Advanced Search</h1>
-    <a href="{{ url_for('home') }}">
-        <button class="home">Home</button>
-    </a>
+    <a href="{{ url_for('home') }}" class="home">Home</a>
+
+    <h1> Search</h1>
 
     <!-- Form for searching Todo -->
     <form method="post" action="{{ url_for('advanced_search') }}">
@@ -29,9 +86,6 @@
     <form method="post" action="{{ url_for('advanced_search') }}">
         {{ form_note.csrf_token }}
         {{ form_note.hidden_tag() }}
-
-        <label for="title">{{ form_note.title.label }}</label>
-        {{ form_note.title }}
 
         <label for="body">{{ form_note.body.label }}</label>
         {{ form_note.body }}
