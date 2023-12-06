@@ -21,8 +21,8 @@ input {
     flex-direction: column;
     align-items: center; /* Center horizontally */
     justify-content: flex-start; /* Align to the top */
-    height: 200vh;
-    background-color: #f0f0f0; /* Grey background */
+    height: 100vh;
+    background-color: #b8b4b4; /* Grey background */
 
 }
 

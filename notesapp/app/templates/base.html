@@ -2,20 +2,20 @@
 <html>
   <head>
     {% block stylesheet %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='default.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='base.css') }}">
     {% endblock %}
     {% if title %}
     <title>{{ title }} - Sticky Notes</title>
     {% else %}
-    <title>Welcome to Sticky Notes</title>
+    
     {% endif %}
   </head>
   <body>
     <div>
       Sticky Notes:
-      <a href="{{ url_for('home') }}">Home</a>
+      
       {% if current_user.is_anonymous %}
-      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('login') }}" style="color: blue; ">Login</a>
       {% else %}
       <a href="{{ url_for('logout') }}">Logout</a>
       {% endif %}
