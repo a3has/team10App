@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='buttonlayout1.css') }}"
+    />
+  </head>
+  <nav>
+  <body>
+    <h2 style="text-align: center">Sticky Notes</h2>
+
+    <div class="button-container">
+      <a href="user">
+        <button class="profile">User Profile</button>
+      </a>
+
+      <a href="todo">
+        <button class="todo">To Do List</button>
+      </a>
+
+      <a href="notes">
+        <button class="add-note">Notes</button>
+      </a>
+
+      <a href="advanced_searching">
+        <button class="AdvancedSearchForm">Search</button>
+      </a>
+
+      <a href="regex_search">
+        <button class="regex">Advanced Search</button>
+      </a>
+
+      <a href="Googlelogin">
+        <button class="g-cal">Google Calendar</button>
+      </a>
+
+      <a href="logout">
+        <!-- Name of Routes ex. /logout-->
+        <button class="logout">Logout</button>
+      </a>
+    </div>
+  </body>
+</nav>
+</html>

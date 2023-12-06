@@ -1,46 +1,98 @@
 <!DOCTYPE html>
 
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='buttonlayout1.css') }}"
-    />
-  </head>
-  <nav>
-  <body>
-    <h2 style="text-align: center">Sticky Notes</h2>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='buttonlayout1.css') }}" />
+    
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='stickynotes.jpg') }}");
+            background-size: cover; 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+        }
+
+        nav {
+            background-color: #333; /* Set a background color for the navigation bar */
+            overflow: hidden; 
+        }
+
+        nav a {
+            float: left; 
+            display: block; 
+            color: white; 
+            text-align: center; 
+            padding: 14px 16px; 
+            text-decoration: none; 
+        }
+
+        nav a:hover {
+            background-color: #ddd; /* Add a background color on hover */
+            color: black; /* Change text color on hover */
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 150px; 
+            color: rgb(136, 17, 17); /* STCKY Notes COLOR */
+            font-size: 200px;
+        }
+
+        .button-container {
+            text-align: center; 
+            margin-top: 20px; 
+        }
+
+       
+        .button-container button {
+            
+            margin: 5px;
+            
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- Your navigation buttons -->
+        <a href="user">
+            <button class="profile">User Profile</button>
+        </a>
+
+        <a href="todo">
+            <button class="todo">To Do List</button>
+        </a>
+
+        <a href="notes">
+            <button class="add-note">Notes</button>
+        </a>
+
+        <a href="advanced_searching">
+            <button class="AdvancedSearchForm">Search</button>
+        </a>
+
+        <a href="regex_search">
+            <button class="regex">Advanced Search</button>
+        </a>
+
+        <a href="Googlelogin">
+            <button class="g-cal">Google Calendar</button>
+        </a>
+
+        <a href="logout">
+            <!-- Name of Routes ex. /logout-->
+            <button class="logout">Logout</button>
+        </a>
+    </nav>
+
+    <h2>Sticky Notes</h2>
 
     <div class="button-container">
-      <a href="user">
-        <button class="profile">User Profile</button>
-      </a>
 
-      <a href="todo">
-        <button class="todo">To Do List</button>
-      </a>
-
-      <a href="notes">
-        <button class="add-note">Notes</button>
-      </a>
-
-      <a href="advanced_searching">
-        <button class="AdvancedSearchForm">Search</button>
-      </a>
-
-      <a href="regex_search">
-        <button class="regex">Advanced Search</button>
-      </a>
-
-      <a href="Googlelogin">
-        <button class="g-cal">Google Calendar</button>
-      </a>
-
-      <a href="logout">
-        <!-- Name of Routes ex. /logout-->
-        <button class="logout">Logout</button>
-      </a>
     </div>
-  </body>
-</nav>
+</body>
 </html>
