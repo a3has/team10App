@@ -8,7 +8,7 @@ body {
 .container {
     max-width: 800px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #e2e2e2; /* TEXT BOX COLOR*/
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +31,7 @@ body {
     background-color: transparent;
     text-decoration: underline;
     font-size: 20px;
-    color:darkgray;
+    color: blue;
 }
 
 .edit:hover {
