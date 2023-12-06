@@ -2,13 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Regex Search</title>
+    <title></title>
+    <style>
+        body {
+            background-color: white; /* Grey background for the page */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 30vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        a.home {
+            display: inline-block;
+            color: white; /* White text color for the home button */
+            margin-bottom: 10px; /* Add some space below the home button */
+            text-decoration: none;
+        }
+
+        button.home {
+            padding: 10px 15px;
+            background-color: red; /* Red background for the home button */
+            color: white; /* White text color for the home button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #e2e2e2; /*TEXT bOX Color*/
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 10px;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        button.submit {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Green color for submit button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.submit:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Styling for search results */
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <a href="home">
-        <button class="home " >Home</button>
+    <a href="home" class="home">
+        <button class="home">Home</button>
     </a>
-    <h1>Regex Search</h1>
+    <h1>Advanced Search</h1>
 
     <form method="post" action="{{ url_for('regex_search') }}">
         {{ form.csrf_token }}
@@ -17,7 +100,7 @@
         <label for="regex_query">{{ form.regex_query.label }}</label>
         {{ form.regex_query }}
         
-        {{ form.submit }}
+        <button class="submit" type="submit">Search</button>
     </form>
 
     {% if results_todo or results_note %}
