@@ -342,8 +342,7 @@ def advanced_search():
         if form_note.title.data or form_note.body.data or form_note.tag.data:
             query_note = Note.query.filter_by(user_id=current_user.id)
 
-            if form_note.title.data:
-                query_note = query_note.filter(Note.title.ilike(f'%{form_note.title.data}%'))
+    
 
             if form_note.body.data:
                 query_note = query_note.filter(Note.body.ilike(f'%{form_note.body.data}%'))
