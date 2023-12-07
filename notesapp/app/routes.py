@@ -223,6 +223,7 @@ def home():
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
     form = NoteForm()
+    all_tags=Tag.query.order_by(Tag.name).all()
     if form.validate_on_submit():
         note = Note(
             title=form.title.data,
@@ -239,9 +240,12 @@ def notes():
         db.session.commit()
         return redirect(url_for('notes'))
     else:
-        print(form.errors)
-    posts = current_user.get_notes()
-    return render_template('notes.html', title='Home Page', form=form, posts=posts)
+        selected_tag = request.args.get('tag')
+        if selected_tag:
+            posts = Note.query.join(Note.tags).filter(Tag.name == selected_tag, Note.user_id == current_user.id).all()
+        else:
+            posts = current_user.get_notes()
+    return render_template('notes.html', title='Home Page', form=form, posts=posts, tags=all_tags)
 
 
 @app.route('/register', methods=['GET', 'POST'])  # registers new user.
@@ -403,6 +407,7 @@ def edit_note(note_id):
     if form.validate_on_submit():
         note.title = form.title.data
         note.body = form.note.data
+        note.color = form.color.data
         note.tags = []
         for tag_name in form.tags.data.split(','):  # Assuming tags are comma-separated
             tag = Tag.query.filter_by(name=tag_name.strip()).first()
@@ -415,6 +420,7 @@ def edit_note(note_id):
     elif request.method == 'GET':
         form.title.data = note.title
         form.note.data = note.body
+        form.color.data = note.color
         form.tags.data = ', '.join([tag.name for tag in note.tags])  # Convert tags to a comma-separated string
     return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
 

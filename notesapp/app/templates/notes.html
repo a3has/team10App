@@ -53,6 +53,16 @@
     {{ ckeditor.load() }}
   </div>
 
+  <form action="{{ url_for('notes') }}" method="get">
+    <label for="tag-filter">Filter by Tag:</label>
+    <select name="tag" id="tag-filter" onchange="this.form.submit()">
+      <option value="">All Tags</option>
+      {% for tag in tags %}
+        <option value="{{ tag.name }}" {% if request.args.get('tag') == tag.name %}selected{% endif %}>{{ tag.name }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
   <div class="clearfix">
     {% for note in posts %}
     <div class="sticky-note" style="background-color: {{ note.color }};">
