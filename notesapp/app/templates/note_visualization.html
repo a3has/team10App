@@ -1,18 +1,24 @@
 {% extends "base.html" %}
 
+{% block stylesheet %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='note_visualization.css') }}">
+{% endblock %}
+
 {% block content %}
-  <div class="container">
+  <div class="visualization-container">
     <h2>Note Visualizations</h2>
 
     <!-- Date-Based Visualization -->
-    <div id="date-graph-container">
+    <div class="graph-container" id="date-graph-container">
       <!-- This is where the date-based graph will be rendered -->
     </div>
 
     <!-- Tag-Based Visualization -->
-    <div id="tag-graph-container">
+    <div class="graph-container" id="tag-graph-container">
       <!-- This is where the tag-based graph will be rendered -->
     </div>
+    
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
   </div>
 
   <!-- Include Plotly library -->
