@@ -14,7 +14,7 @@ cute
 8. Support text formatting (Adding bold, italic, and underline).
 9. *Advance search items with regular expressions or filters by categories (Abiltiiy to search for key words in the notes).
 10. Change note background color (Ability to change the color of the background).
-11. *Visualize note connections (Visualization of the note pages with sub folders).
+11. *Visualize note connections (Graph view of notes by date published and tags).
 12. *Connect with any external API (google calendar).
 13. Support for image attachments.
 14. ToDo Checklist
@@ -309,7 +309,7 @@ Sketch for color here
   1. User fails to log in with a verified account
   Prompt the user to try again 
 - **Alternative Sequence**
-  1. The user does not have any existing notes or folders in the system
+  1. The user does not have any existing notes in the system and the system displays nothing
   
 
 Sketch for visulization here
