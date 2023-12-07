@@ -20,6 +20,11 @@ from flask_sqlalchemy import SQLAlchemy
 import re
 import google.oauth2.credentials
 import google_auth_oauthlib.flow
+from models import Note, Tag, note_tags
+import pandas as pd
+import plotly.express as px
+from sqlalchemy import func
+
 
 with app.app_context():
 
@@ -428,3 +433,17 @@ def delete_note(note_id):
     db.session.delete(note)
     db.session.commit()
     return redirect(url_for('notes'))
+
+@app.route('/note_visualization')
+def note_visualization():
+    # Extract date information from notes
+    date_counts = db.session.query(func.date(Note.timestamp).label('date'), func.count().label('note_count')).group_by('date').all()
+
+    # Extract tag information from notes
+    tag_counts = db.session.query(Tag.name.label('tag_name'), func.count().label('note_count')).join(note_tags).group_by(Tag.name).all()
+
+    # Convert Row objects to dictionaries for easy serialization
+    date_counts = [{'date': entry.date, 'note_count': entry.note_count} for entry in date_counts]
+    tag_counts = [{'tag_name': entry.tag_name, 'note_count': entry.note_count} for entry in tag_counts]
+
+    return render_template('note_visualization.html', title='Note Visualizations', date_counts=date_counts, tag_counts=tag_counts)

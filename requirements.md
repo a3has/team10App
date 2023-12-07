@@ -299,18 +299,18 @@ Sketch for color here
   1. User logs in
 - **Primary Sequence**
   1. User logs in with a verified account
-  2. The system sends the user to the home page and displays the highest-level folder(s) within the system
-  3. The user selects right clicks folder and selects the visualize option
-  4. System displays a tree with all folders and all notes within them
+  2. The system sends the user to the home page
+  3. The user navigates to the note visualization page
+  4. System displays a graph that displays quantity of notes posted by date and another graph by tag
 - **Primary Postconditions**
-  - Users can view the note and open subsequent folders when selected from the tree
-  - Users can manipulate the note and its subfolders by moving them around changing text, or deleting
+  - Users can hover over the graphs to see quantities
+  - Users can return home
 - **Alternative Sequence**
   1. User fails to log in with a verified account
   Prompt the user to try again 
 - **Alternative Sequence**
   1. The user does not have any existing notes or folders in the system
-  The system prompts users that they do not have any notes and to create one now.
+  
 
 Sketch for visulization here
 [visulization](images/Hiearchy.png)

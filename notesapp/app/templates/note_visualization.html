@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='note_visualization.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="visualization-container">
+    <h2>Note Visualizations</h2>
+
+    <!-- Date-Based Visualization -->
+    <div class="graph-container" id="date-graph-container">
+      <!-- This is where the date-based graph will be rendered -->
+    </div>
+
+    <!-- Tag-Based Visualization -->
+    <div class="graph-container" id="tag-graph-container">
+      <!-- This is where the tag-based graph will be rendered -->
+    </div>
+    
+    <a href="{{ url_for('home') }}" class="home-button">Home</a>
+  </div>
+
+  <!-- Include Plotly library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <script>
+    // Extract date information from notes
+    var dates = {{ date_counts | tojson | safe }};
+    var date_data = {
+      x: dates.map(function(entry) { return entry.date; }),
+      y: dates.map(function(entry) { return entry.note_count; }),
+      type: 'bar',
+      name: 'Notes by Date'
+    };
+
+    // Render date-based graph
+    Plotly.newPlot('date-graph-container', [date_data], {title: 'Note Counts by Date'});
+
+    // Extract tag information from notes
+    var tags = {{ tag_counts | tojson | safe }};
+    var tag_data = {
+      labels: tags.map(function(entry) { return entry.tag_name; }),
+      values: tags.map(function(entry) { return entry.note_count; }),
+      type: 'pie',
+      name: 'Notes by Tag'
+    };
+
+    // Render tag-based graph
+    Plotly.newPlot('tag-graph-container', [tag_data], {title: 'Note Counts by Tag'});
+  </script>
+{% endblock %}
