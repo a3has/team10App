@@ -90,10 +90,12 @@ flask run
 
 ### Calendar
 1. From home, click on calendar.
-2. You will be redirected to the Google login page where you can safely login into your google account. If not automatically redirected, click link from console. 
-3. After authentication, return back to calenda.
-4. Your most recent events from your personal Google Calendar will be imported.
-5. A generic Google Calendar window view is also shown. 
+2. You will be redirected to the Google login page where you can safely login into your google account. If not automatically redirected, click link from console where the flask run command was typed. 
+3. After authentication, return back to calendar.
+4. Your most recent events from your personal Google Calendar will be imported--if none were found, a message will be shown.
+5. A generic Google Calendar window view is also shown.
+6. Note: If you are getting a CSRF (State Mismatch) error, please delete the token.json file found in the repo or the one your device created, and then try again :) ; its a cookie problem... 
+
 
 ### Logout
 1. From the /home route, click the `Logout` button. 
