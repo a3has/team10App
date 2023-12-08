@@ -118,6 +118,7 @@ Find a list of the packages we used for this application [here](https://github.c
 - Note creation
 - Note editing
 - Note deletion
+- Filtering by note tags
 ### Abdulkader
 - Google Calendar API Integration 
 - Login, Sign up, Password Hashing
@@ -137,6 +138,8 @@ Find a list of the packages we used for this application [here](https://github.c
 
 ### Jonathan
 - [PR 1 - Create Note, Edit Note, Delete Note, Notes page](https://github.com/a3has/team10App/commit/78be911b44b0fb25e1075a055e192f6db0a1cfbd)
+- [PR 2 - Added note tags](https://github.com/a3has/team10App/commit/e303645aec0570aa86c2c40eb3f97d9b43e087b5)
+- [PR 3 - Added filtering by note tags](https://github.com/a3has/team10App/commit/cfc6ca662025edeeedf0a794b441330a3771c3df)
 
 ### Abdulkader
 - [PR 1](https://github.com/a3has/team10App/pull/19)
