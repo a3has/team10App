@@ -24,9 +24,12 @@ from models import Note, Tag, note_tags
 import pandas as pd
 import plotly.express as px
 from sqlalchemy import func
+from flask_wtf.csrf import CSRFProtect
 
 
 with app.app_context():
+
+    # csrf = CSRFProtect(app)
 
     # secret file needed for api access. pls dont leak
     CLIENT_SECRETS_FILE = "app/client_secret.json"
@@ -138,6 +141,7 @@ def clear_credentials():
 
 # imports your events from your personal google calendar.
 @app.route('/calendar')
+# @csrf.exempt
 def calendar():
     creds = None
 
@@ -177,7 +181,8 @@ def calendar():
 
         if not events:
             print("No upcoming events found.")
-            return
+            return render_template('calendar.html', results=["No events found. You are all caught up!"])
+            return "No events found. You are all caught up!"
 
         # Prints the start and name of the next events. all info printed is not sensitive.
         formatted_events = []
@@ -187,8 +192,10 @@ def calendar():
 
     except HttpError as error:
         print(f"An error occurred: {error}")
+        return "An error occurred while fetching calendar events."
 
     # returns the display function
+    print(f"are you here?")
     return render_template('calendar.html', results=formatted_events)
 
 
@@ -222,13 +229,15 @@ def login():
 @app.route('/home')
 @login_required
 def home():
-    return render_template('home.html') # redirect to home page 
+    return render_template('home.html')  # redirect to home page
 
 # route for viewing notes. Crud operations accessible from here
+
+
 @app.route('/notes', methods=['GET', 'POST'])
 def notes():
     form = NoteForm()
-    all_tags=Tag.query.order_by(Tag.name).all()
+    all_tags = Tag.query.order_by(Tag.name).all()
     if form.validate_on_submit():
         note = Note(
             title=form.title.data,
@@ -247,7 +256,8 @@ def notes():
     else:
         selected_tag = request.args.get('tag')
         if selected_tag:
-            posts = Note.query.join(Note.tags).filter(Tag.name == selected_tag, Note.user_id == current_user.id).all()
+            posts = Note.query.join(Note.tags).filter(
+                Tag.name == selected_tag, Note.user_id == current_user.id).all()
         else:
             posts = current_user.get_notes()
     return render_template('notes.html', title='Home Page', form=form, posts=posts, tags=all_tags)
@@ -267,59 +277,64 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/user', methods=['GET', 'POST']) # handle get and post request 
-def profile(): # profile page 
-    form = EditProfileForm() # created form using edit profile form  
-    user = User.query.get_or_404(current_user.id) # get user from data base 
 
-    if form.validate_on_submit(): # if validated update user information 
+@app.route('/user', methods=['GET', 'POST'])  # handle get and post request
+def profile():  # profile page
+    form = EditProfileForm()  # created form using edit profile form
+    user = User.query.get_or_404(current_user.id)  # get user from data base
+
+    if form.validate_on_submit():  # if validated update user information
         user.username = form.username.data
         user.email = form.email.data
         user.biography = form.biography.data
-        db.session.commit() # save changes 
+        db.session.commit()  # save changes
         # Redirect to avoid post/redirect/get pattern
         return redirect(url_for('profile'))
 
-    elif request.method == 'GET': # if request is to get then udpdate information 
+    elif request.method == 'GET':  # if request is to get then udpdate information
         form.username.data = user.username
         form.email.data = user.email
         form.biography.data = user.biography
 
-    note_count = user.notes.count() # count the number of notes for the user 
+    note_count = user.notes.count()  # count the number of notes for the user
     return render_template('user.html', title='User Profile', form=form, user=user, note_count=note_count)
 
 
 @app.route('/todo')
 def todo():
-    todo_list = Todo.query.filter_by(user_id=current_user.id).all() # create todo for unique users 
+    # create todo for unique users
+    todo_list = Todo.query.filter_by(user_id=current_user.id).all()
     # todo_list = current_user.Todo.all()
     # todo_list=Todo.query.all()
-    return render_template('todo.html', todo_list=todo_list) # user redered hmtl template 
+    # user redered hmtl template
+    return render_template('todo.html', todo_list=todo_list)
 
 
 @app.route('/add', methods=['POST'])
 def add():
-    name = request.form.get("name") # gt name from form
-    new_task = Todo(name=name, done=False, user_id=current_user.id) # new task for unique users 
-    db.session.add(new_task) # add task to db 
-    db.session.commit() # commmit to db 
-    return redirect(url_for("todo")) # rediect 
+    name = request.form.get("name")  # gt name from form
+    # new task for unique users
+    new_task = Todo(name=name, done=False, user_id=current_user.id)
+    db.session.add(new_task)  # add task to db
+    db.session.commit()  # commmit to db
+    return redirect(url_for("todo"))  # rediect
 
 
 @app.route('/update/<int:todo_id>')
 def update(todo_id):
-    todo = Todo.query.get(todo_id) # get todo id from data base 
-    todo.done = not todo.done # toggle wheter task is done or not 
-    db.session.commit() # commit to db 
+    todo = Todo.query.get(todo_id)  # get todo id from data base
+    todo.done = not todo.done  # toggle wheter task is done or not
+    db.session.commit()  # commit to db
     return redirect(url_for("todo"))
 
 
 @app.route('/delete/<int:todo_id>')
 def delete(todo_id):
-    todo = Todo.query.get(todo_id) # get todo id from data base 
-    db.session.delete(todo) # delete the task from db 
-    db.session.commit() # commit 
-    return redirect(url_for("todo")) #redirect 
+    todo = Todo.query.get(todo_id)  # get todo id from data base
+    db.session.delete(todo)  # delete the task from db
+    db.session.commit()  # commit
+    return redirect(url_for("todo"))  # redirect
+
 
 @app.route('/advanced_searching', methods=['GET', 'POST'])
 def advanced_search():
@@ -336,23 +351,25 @@ def advanced_search():
         if form_todo.task_name.data:
             query_todo = Todo.query.filter_by(user_id=current_user.id)
 
-            query_todo = query_todo.filter(Todo.name.ilike(f'%{form_todo.task_name.data}%'))
+            query_todo = query_todo.filter(
+                Todo.name.ilike(f'%{form_todo.task_name.data}%'))
 
             # Filter based on completion status
-            query_todo = query_todo.filter(Todo.done == form_todo.is_complete.data)
+            query_todo = query_todo.filter(
+                Todo.done == form_todo.is_complete.data)
 
             results_todo = query_todo.all()
 
         if form_note.title.data or form_note.body.data or form_note.tag.data:
             query_note = Note.query.filter_by(user_id=current_user.id)
 
-    
-
             if form_note.body.data:
-                query_note = query_note.filter(Note.body.ilike(f'%{form_note.body.data}%'))
+                query_note = query_note.filter(
+                    Note.body.ilike(f'%{form_note.body.data}%'))
 
             if form_note.tag.data:
-                query_note = query_note.filter(Note.tags.any(Tag.name.ilike(f'%{form_note.tag.data}%')))
+                query_note = query_note.filter(Note.tags.any(
+                    Tag.name.ilike(f'%{form_note.tag.data}%')))
 
             results_note = query_note.all()
 
@@ -363,9 +380,10 @@ def advanced_search():
     # Render the search page with the form and no results initially
     return render_template('adv_search.html', form_todo=form_todo, form_note=form_note, results_todo=None, results_note=None)
 
+
 @app.route('/regex_search', methods=['GET', 'POST'])
 def regex_search():
-    form = RegexSearchForm()  #RegexSearchForm
+    form = RegexSearchForm()  # RegexSearchForm
 
     results_todo, results_note = [], []
 
@@ -378,13 +396,15 @@ def regex_search():
         if search_query:
             # Perform regex search for todos
             query_todo = Todo.query.filter_by(user_id=current_user.id)
-            query_todo = query_todo.filter(Todo.name.op('REGEXP')(search_query))
+            query_todo = query_todo.filter(
+                Todo.name.op('REGEXP')(search_query))
             results_todo = query_todo.all()
 
             # Perform regex search for notes
             query_note = Note.query.filter_by(user_id=current_user.id)
             query_note = query_note.filter(
-                (Note.title.op('REGEXP')(search_query)) | (Note.body.op('REGEXP')(search_query))
+                (Note.title.op('REGEXP')(search_query)) | (
+                    Note.body.op('REGEXP')(search_query))
             )
             results_note = query_note.all()
 
@@ -402,6 +422,8 @@ def logout():
     return redirect(url_for('login'))
 
 # route for editing existing notes on the /notes route
+
+
 @app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
 @login_required
 def edit_note(note_id):
@@ -414,7 +436,8 @@ def edit_note(note_id):
         note.body = form.note.data
         note.color = form.color.data
         note.tags = []
-        for tag_name in form.tags.data.split(','):  # Assuming tags are comma-separated
+        # Assuming tags are comma-separated
+        for tag_name in form.tags.data.split(','):
             tag = Tag.query.filter_by(name=tag_name.strip()).first()
             if not tag:
                 tag = Tag(name=tag_name.strip())
@@ -426,10 +449,13 @@ def edit_note(note_id):
         form.title.data = note.title
         form.note.data = note.body
         form.color.data = note.color
-        form.tags.data = ', '.join([tag.name for tag in note.tags])  # Convert tags to a comma-separated string
+        # Convert tags to a comma-separated string
+        form.tags.data = ', '.join([tag.name for tag in note.tags])
     return render_template('edit_note.html', title='Edit Note', form=form, note_id=note.id)
 
 # route for deleting existing notes on the /notes route
+
+
 @app.route('/delete_note/<int:note_id>', methods=['POST'])
 @login_required
 def delete_note(note_id):
@@ -440,16 +466,21 @@ def delete_note(note_id):
     db.session.commit()
     return redirect(url_for('notes'))
 
+
 @app.route('/note_visualization')
 def note_visualization():
     # Extract date information from notes
-    date_counts = db.session.query(func.date(Note.timestamp).label('date'), func.count().label('note_count')).group_by('date').all()
+    date_counts = db.session.query(func.date(Note.timestamp).label(
+        'date'), func.count().label('note_count')).group_by('date').all()
 
     # Extract tag information from notes
-    tag_counts = db.session.query(Tag.name.label('tag_name'), func.count().label('note_count')).join(note_tags).group_by(Tag.name).all()
+    tag_counts = db.session.query(Tag.name.label('tag_name'), func.count().label(
+        'note_count')).join(note_tags).group_by(Tag.name).all()
 
     # Convert Row objects to dictionaries for easy serialization
-    date_counts = [{'date': entry.date, 'note_count': entry.note_count} for entry in date_counts]
-    tag_counts = [{'tag_name': entry.tag_name, 'note_count': entry.note_count} for entry in tag_counts]
+    date_counts = [{'date': entry.date, 'note_count': entry.note_count}
+                   for entry in date_counts]
+    tag_counts = [{'tag_name': entry.tag_name,
+                   'note_count': entry.note_count} for entry in tag_counts]
 
     return render_template('note_visualization.html', title='Note Visualizations', date_counts=date_counts, tag_counts=tag_counts)
