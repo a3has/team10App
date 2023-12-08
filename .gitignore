@@ -2,3 +2,4 @@
 notesapp/app/__pycache__
 notesapp/venv
 app.db
+notesapp/token.json
