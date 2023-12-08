@@ -124,7 +124,8 @@ Find a list of the packages we used for this application [here](https://github.c
 - Login, Sign up, Password Hashing
 ### Nikko
 - Text formatting via Rich text editor 
-- Image Support via rich text editor 
+- Image Support via rich text editor
+- Visualize note connections 
 
 ## PullRequest
 ### Sammy
