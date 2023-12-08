@@ -149,3 +149,5 @@ Find a list of the packages we used for this application [here](https://github.c
 - [PR 1](https://github.com/a3has/team10App/pull/23)
 - [PR 2](https://github.com/a3has/team10App/pull/33)
 - [PR 3](https://github.com/a3has/team10App/pull/34)
+- [PR 4](https://github.com/a3has/team10App/pull/69)
+- [PR 5](https://github.com/a3has/team10App/pull/70)
