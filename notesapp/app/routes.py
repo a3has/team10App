@@ -15,6 +15,7 @@ import os.path
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 import datetime
+import pytz
 import os
 from flask_sqlalchemy import SQLAlchemy
 import re
@@ -165,6 +166,7 @@ def calendar():
 
         # Call the Calendar API
         now = datetime.datetime.utcnow().isoformat() + "Z"  # 'Z' indicates UTC time
+        print(now)
         print("Getting the upcoming 10 events")
         events_result = (
             service.events()
@@ -182,20 +184,28 @@ def calendar():
         if not events:
             print("No upcoming events found.")
             return render_template('calendar.html', results=["No events found. You are all caught up!"])
-            return "No events found. You are all caught up!"
 
         # Prints the start and name of the next events. all info printed is not sensitive.
         formatted_events = []
         for event in events:
             start = event["start"].get("dateTime", event["start"].get("date"))
-            formatted_events.append((start, event["summary"]))
+            # isodate = now
+            # # we need to strip 'Z' before parsing
+            # d = datetime.datetime.fromisoformat(
+            #     isodate[:-1]).replace(tzinfo=pytz.utc)
+            # print(d.astimezone(pytz.timezone('US/Pacific')
+            #                    ).strftime('%m-%d-%Y %I:%M %p'))
+
+            start_datetime = datetime.datetime.fromisoformat(start)
+            formatted_start_time = start_datetime.strftime('%m-%d-%Y %I:%M %p')
+            formatted_events.append((formatted_start_time, event["summary"]))
 
     except HttpError as error:
         print(f"An error occurred: {error}")
         return "An error occurred while fetching calendar events."
 
     # returns the display function
-    print(f"are you here?")
+    # print(f"are you here?")
     return render_template('calendar.html', results=formatted_events)
 
 
