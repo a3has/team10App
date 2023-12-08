@@ -95,11 +95,15 @@ flask run
 4. Your most recent events from your personal Google Calendar will be imported--if none were found, a message will be shown.
 5. A generic Google Calendar window view is also shown.
 6. Note: If you are getting a CSRF (State Mismatch) error, please delete the token.json file found in the repo or the one your device created, and then try again :) ; its a cookie problem... Also, make sure to kill the current running server and try launching again. This ensures that your token.json file is valid.
+7. Only approved users can access the api since the app is considered in testing phase. Prof. Rojas and TA SJSU emails will be listed under testers, so make sure to login using those accounts.
 
 
 ### Logout
 1. From the /home route, click the `Logout` button. 
 2. You will then be logged out, and redirected back to the /login route.
+
+### Demo
+- Demo video for app [here](https://drive.google.com/file/d/1uvwprsmGDvG1TboWchUUwp0aCVqJz4a1/view?usp=sharing).
 
 ## Packages
 Find a list of the packages we used for this application [here](https://github.com/a3has/team10App/blob/milestone2/notesapp/requirements.txt).
