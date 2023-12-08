@@ -94,7 +94,7 @@ flask run
 3. After authentication, return back to calendar.
 4. Your most recent events from your personal Google Calendar will be imported--if none were found, a message will be shown.
 5. A generic Google Calendar window view is also shown.
-6. Note: If you are getting a CSRF (State Mismatch) error, please delete the token.json file found in the repo or the one your device created, and then try again :) ; its a cookie problem... 
+6. Note: If you are getting a CSRF (State Mismatch) error, please delete the token.json file found in the repo or the one your device created, and then try again :) ; its a cookie problem... Also, make sure to kill the current running server and try launching again. This ensures that your token.json file is valid.
 
 
 ### Logout
