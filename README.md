@@ -112,7 +112,8 @@ Find a list of the packages we used for this application [here](https://github.c
 - To Do Checklist 
 - Search 
 - Homepage 
-- Search 
+- advanced Search 
+- user profile
 ### Jonathan
 - Notes view
 - Note creation
